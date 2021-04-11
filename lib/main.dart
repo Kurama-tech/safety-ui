@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:safety/provider/counter.dart';
 import 'package:safety/view/counterView.dart';
 import 'package:safety/view/homeView.dart';
+import 'package:ios_platform_images/ios_platform_images.dart';
 
 /// This is a reimplementation of the default Flutter application using provider + [ChangeNotifier].
 

@@ -29,6 +29,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   provider: ^5.0.0
+  ios_platform_images: ^0.2.0
+  flutter_speed_dial: ^3.0.5
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_test:
@@ -45,11 +48,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/images/8441-ai.png
-    - assets/images/resources.png
-    - assets/images/5870-ai.png
-    - assets/images/4070-ai.png
-    - assets/images/13269-ai.png
+    - assets/images/
 
 
   # To add assets to your application, add an assets section, like this:

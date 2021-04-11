@@ -14,85 +14,307 @@ class SafetyPlan extends StatelessWidget {
         ),
        
       
-
-      Card(
-  child: new InkWell(
-    onTap: () {
-      print("tapped");
-    },
-    child: Container(
-      width: 100.0,
-      height: 100.0,
+    Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      height: 220,
+      width: double.maxFinite,
+      child :Card(
+        child: new InkWell(
+          onTap: () {
+            print("tapped");
+            },
+        child: Padding(
+          padding: EdgeInsets.all(7),
+          child: Stack(children: <Widget>[
+            Align(
+              alignment: Alignment.centerRight,
+              child: Stack(
+                children: <Widget>[
+                 
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 5),
+                    
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding:const EdgeInsets.only(left: 15.0),
+                              child: Align(
+                                 alignment: Alignment.centerLeft,
+                                 child: Icon(
+                                   Icons.warning,
+                                   color: Colors.red[700],
+                                   size: 80,
+                                            )),
+                                      )
+                                    ],
+                                    
+                                  )
+                                ],
+                              ))
+                        ],
+                      ),
+                    )
+                  ]),
+                  
+                ),
+      ),
     ),
   ),
-),
-
-
-      Card(
-  child: new InkWell(
-    onTap: () {
-      print("tapped");
-    },
-    child: Container(
-      width: 100.0,
-      height: 100.0,
-    ),
-  ),
-),
-
-
-      Card(
-  child: new InkWell(
-    onTap: () {
-      print("tapped");
-    },
-    child: Container(
-      width: 100.0,
-      height: 100.0,
-    ),
-  ),
-),
-
-
-      Card(
-  child: new InkWell(
-    onTap: () {
-      print("tapped");
-    },
-    child: Container(
-      width: 100.0,
-      height: 100.0,
-    ),
-  ),
-),
-
-
-      Card(
-  child: new InkWell(
-    onTap: () {
-      print("tapped");
-    },
-    child: Container(
-      width: 100.0,
-      height: 100.0,
-    ),
-  ),
-),
-
-
-      Card(
-     
-   child: new InkWell(
-    onTap: () {
-      print("tapped");
-    },
-    child: Container(
-       width: 100.0,
-      height: 100.0,
-    ),
     
+    Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      height: 220,
+      width: double.maxFinite,
+      child :Card(
+        child: new InkWell(
+          onTap: () {
+            print("tapped");
+            },
+        child: Padding(
+          padding: EdgeInsets.all(7),
+          child: Stack(children: <Widget>[
+            Align(
+              alignment: Alignment.centerRight,
+              child: Stack(
+                children: <Widget>[
+                 
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 5),
+                    
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding:const EdgeInsets.only(left: 15.0),
+                              child: Align(
+                                 alignment: Alignment.centerLeft,
+                                 child: Icon(
+                                   Icons.music_note,
+                                   color: Colors.red[700],
+                                   size: 80,
+                                            )),
+                                      )
+                                    ],
+                                    
+                                  )
+                                ],
+                              ))
+                        ],
+                      ),
+                    )
+                  ]),
+                  
+                ),
+      ),
+    ),
   ),
-),
+
+
+         
+    Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      height: 220,
+      width: double.maxFinite,
+      child :Card(
+        child: new InkWell(
+          onTap: () {
+            print("tapped");
+            },
+        child: Padding(
+          padding: EdgeInsets.all(7),
+          child: Stack(children: <Widget>[
+            Align(
+              alignment: Alignment.centerRight,
+              child: Stack(
+                children: <Widget>[
+                 
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 5),
+                    
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding:const EdgeInsets.only(left: 15.0),
+                              child: Align(
+                                 alignment: Alignment.centerLeft,
+                                 child: Icon(
+                                   Icons.wb_sunny,
+                                   color: Colors.red[700],
+                                   size: 80,
+                                            )),
+                                      )
+                                    ],
+                                    
+                                  )
+                                ],
+                              ))
+                        ],
+                      ),
+                    )
+                  ]),
+                  
+                ),
+      ),
+    ),
+  ),
+
+
+         
+    Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      height: 220,
+      width: double.maxFinite,
+      child :Card(
+        child: new InkWell(
+          onTap: () {
+            print("tapped");
+            },
+        child: Padding(
+          padding: EdgeInsets.all(7),
+          child: Stack(children: <Widget>[
+            Align(
+              alignment: Alignment.centerRight,
+              child: Stack(
+                children: <Widget>[
+                 
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 5),
+                    
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding:const EdgeInsets.only(left: 15.0),
+                              child: Align(
+                                 alignment: Alignment.centerLeft,
+                                 child: Icon(
+                                   Icons.contact_phone,
+                                   color: Colors.red[700],
+                                   size: 80,
+                                            )),
+                                      )
+                                    ],
+                                    
+                                  )
+                                ],
+                              ))
+                        ],
+                      ),
+                    )
+                  ]),
+                  
+                ),
+      ),
+    ),
+  ),
+
+         
+    Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      height: 220,
+      width: double.maxFinite,
+      child :Card(
+        
+        child: new InkWell(
+          onTap: () {
+            print("tapped");
+            },
+        child: Padding(
+          padding: EdgeInsets.all(7),
+          child: Stack(children: <Widget>[
+            Align(
+              alignment: Alignment.centerRight,
+              child: Stack(
+                children: <Widget>[
+                 
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 5),
+                    
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding:const EdgeInsets.only(left: 15.0),
+                              child: Align(
+                                 alignment: Alignment.centerLeft,
+                                 child: Icon(
+                                   Icons.place,
+                                   color: Colors.red[700],
+                                   size: 80,
+                                            )),
+                                      )
+                                    ],
+                                    
+                                  )
+                                ],
+                              ))
+                        ],
+                      ),
+                    )
+                  ]),
+                  
+                ),
+      ),
+    ),
+  ),
+
+
+         
+    Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      height: 220,
+      width: double.maxFinite,
+      child :Card(
+        child: new InkWell(
+          onTap: () {
+            print("tapped");
+            },
+        child: Padding(
+          padding: EdgeInsets.all(7),
+          child: Stack(children: <Widget>[
+            Align(
+              alignment: Alignment.centerRight,
+              child: Stack(
+                children: <Widget>[
+                 
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 5),
+                    
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding:const EdgeInsets.only(left: 15.0),
+                              child: Align(
+                                 alignment: Alignment.centerLeft,
+                                 child: Icon(
+                                   Icons.grid_view,
+                                   color: Colors.red[700],
+                                   size: 80,
+                                            )),
+                                      )
+                                    ],
+                                    
+                                  )
+                                ],
+                              ))
+                        ],
+                      ),
+                    )
+                  ]),
+                  
+                ),
+      ),
+    ),
+  ),
         ]
        ),
         

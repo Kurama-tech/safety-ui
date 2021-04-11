@@ -24,7 +24,136 @@ class MyHomePage extends StatelessWidget {
         elevation: 0.0,
       ),
       extendBodyBehindAppBar: true,
-      body: Center(
+      body:ListView(
+        children: [
+          InkWell(
+            child:Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    
+                    title: const Text('Safety Plan'),
+                    subtitle: Text(
+                      'Tap ',
+                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    ),
+                  ),
+               
+                  Image.asset(
+                                        "images/4070-ai.png",
+                                        width: 400,
+                                        height: 200,
+                                        fit:BoxFit.fill  
+
+                                      )
+                  
+                ],
+                
+              ),
+            ),
+             onTap: () { 
+        print("Click event on Container"); 
+    },
+          ),
+          
+        InkWell(
+            child:Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    
+                    title: const Text('Reminder'),
+                    subtitle: Text(
+                      'Secondary Text',
+                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    ),
+                  ),
+                  
+                  
+                  Image.asset(
+                                        "images/13269-ai.png",
+                                        width: 400,
+                                        height: 200,
+                                        fit:BoxFit.fill  
+
+                                      )
+                ],
+              ),
+            ),
+                     onTap: () { 
+        print("Click event on Container"); 
+    },
+        ),
+
+            
+              InkWell(
+            child:Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    
+                    title: const Text('Resources'),
+                    subtitle: Text(
+                      'Secondary Text',
+                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    ),
+                  ),
+                 
+                  
+                   Image.asset(
+                                        "images/resources.png",
+                                        width: 400,
+                                        height: 200,
+                                        fit:BoxFit.fill  
+
+                                      )
+                  //Image.asset("images/8441-ai.png"),
+                ],
+              ),
+            ),
+                     onTap: () { 
+        print("Click event on Container"); 
+    },
+              ),
+
+
+          InkWell(
+            child:Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                children: [
+                  ListTile(
+                    
+                    title: const Text('Music'),
+                    subtitle: Text(
+                      'Secondary Text',
+                      style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    ),
+                  ),
+                  
+                  Image.asset(
+                                        "images/5870-ai.png",
+                                        width: 400,
+                                        height: 200,
+                                        fit:BoxFit.fill  
+
+                                      )
+                ],
+              ),
+            ),
+                     onTap: () { 
+        print("Click event on Container"); 
+    },
+          ),
+      
+      
+      
+      
+      
+       /* Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +168,12 @@ class MyHomePage extends StatelessWidget {
             Count(), //https://github.com/Kurama-tech/safety-ui.git
           ],
         ),
-      ),
+      ),  */
+      
+      
+
+
+/* 
       floatingActionButton: FloatingActionButton(
         key: const Key('increment_floatingActionButton'),
 
@@ -47,8 +181,9 @@ class MyHomePage extends StatelessWidget {
         /// when [Counter] changes.
         onPressed: () => context.read<Counter>().increment(),
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+        child: const Icon(Icons.add), */
+        ],
+      )
     );
   }
 }

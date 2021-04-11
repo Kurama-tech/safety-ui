@@ -23,6 +23,7 @@ class MyHomePage extends StatelessWidget {
         ),
         extendBodyBehindAppBar: false,
         floatingActionButton: buildSpeedDial(),
+        backgroundColor: Colors.teal,
         body: ListView(
           children: [
             InkWell(

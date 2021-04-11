@@ -317,6 +317,37 @@ class SafetyPlan extends StatelessWidget {
   ),
         ]
        ),
+
+   bottomNavigationBar:BottomNavigationBar(
+  type: BottomNavigationBarType.fixed,
+  backgroundColor: Colors.tealAccent[100],
+  selectedItemColor: Colors.white,
+  unselectedItemColor: Colors.white.withOpacity(.60),
+  selectedFontSize: 14,
+  unselectedFontSize: 14,
+  onTap: (value) {
+    // Respond to item press.
+  },
+  items: [
+    BottomNavigationBarItem(
+      // ignore: deprecated_member_use
+      title: Text('Planning',style: TextStyle(color: Colors.black.withOpacity(0.8))),
+      icon: Icon(Icons.assignment, color: Colors.black),
+    ),
+    BottomNavigationBarItem(
+      title: Text('Reminder',style: TextStyle(color: Colors.black.withOpacity(0.8))),
+      icon: Icon(Icons.calendar_today, color: Colors.black),
+    ),
+    BottomNavigationBarItem(
+      title: Text('Resources',style: TextStyle(color: Colors.black.withOpacity(0.8))),
+      icon: Icon(Icons.inventory, color: Colors.black),
+    ),
+    BottomNavigationBarItem(
+      title: Text('Music',style: TextStyle(color: Colors.black.withOpacity(0.8))),
+      icon: Icon(Icons.library_music, color: Colors.black),
+    ),
+  ],
+)
         
     );
   }

@@ -9,7 +9,7 @@ class SafetyPlan extends StatelessWidget {
          new Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            new Image.asset("images/4070-ai.png") 
+            new Image.asset("assets/images/4070-ai.png") 
           ]
         ),
        

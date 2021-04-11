@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:safety/view/safetyPlan.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({key}) : super(key: key);
@@ -46,7 +47,13 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                print("Click event on Container");
+                Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              SafetyPlan(),
+        ),
+      );
               },
             ),
             InkWell(

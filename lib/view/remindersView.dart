@@ -20,7 +20,13 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+            side: BorderSide(width: 2, color: Colors.white)),
         bottom: TabBar(
+          indicator: UnderlineTabIndicator(borderSide: BorderSide(width: 5.0)),
+          indicatorSize: TabBarIndicatorSize.label,
+          unselectedLabelColor: Theme.of(context).unselectedWidgetColor,
           labelColor: Theme.of(context).textTheme.headline4.color,
           controller: _tabController,
           tabs: [

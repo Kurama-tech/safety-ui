@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:safety/view/safetyPlan.dart';
@@ -11,20 +12,25 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: true,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(width: 2, color: Colors.white)),
+          leading: Icon(Icons.local_hospital_rounded, color: Colors.black,),
           centerTitle: true,
-          title: Text(
+          titleSpacing: 7.0,
+          title: Container(child: Text(
             title,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
             ),
-          ),
+          ),),
           backgroundColor: Colors.greenAccent,
-          elevation: 0.0,
+          elevation: 3.0,
+          systemOverlayStyle: SystemUiOverlayStyle(systemNavigationBarColor: Colors.greenAccent, systemNavigationBarIconBrightness: Brightness.dark),
         ),
         extendBodyBehindAppBar: false,
         floatingActionButton: buildSpeedDial(),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.grey.shade200,
         body: ListView(
           children: [
             InkWell(

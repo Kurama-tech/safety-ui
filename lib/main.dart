@@ -35,7 +35,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
-      theme: ThemeData(primaryColor: Colors.greenAccent),
+      theme: ThemeData(
+        primaryColor: Colors.greenAccent,
+        textTheme: TextTheme(
+          headline4: TextStyle(color: Colors.black)
+        ),
+        appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.black)),
+      )
+
     );
   }
 }

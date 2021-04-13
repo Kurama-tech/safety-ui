@@ -1,40 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:safety/view/homeView.dart';
 
-class Reminders extends StatelessWidget {
+class Reminders extends StatefulWidget {
+  const Reminders({key}) : super(key: key);
+
+  @override
+  _RemindersState createState() => _RemindersState();
+}
+
+class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
+  TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            leading: BackButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
-                );
-              },
+    return Scaffold(
+      appBar: AppBar(
+        bottom: TabBar(
+          labelColor: Theme.of(context).textTheme.headline4.color,
+          controller: _tabController,
+          tabs: [
+            Tab(
+              child: Text("Medications"),
             ),
-            backgroundColor: Colors.greenAccent,
-            bottom: TabBar(
-              tabs: [
-                Tab(
-                  child: Text("Medications"),
-                ),
-                Tab(
-                  child: Text("Appointments"),
-                ),
-              ],
+            Tab(
+              child: Text("Appointments"),
             ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(Icons.add),
-            backgroundColor: Colors.teal,
-          ),
+          ],
         ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          Center(
+            child: Text('It\'s cloudy here'),
+          ),
+          Center(
+            child: Text('It\'s rainy here'),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.teal,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:safety/view/reminders.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:safety/view/safetyPlan.dart';
 
@@ -49,12 +50,11 @@ class MyHomePage extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-              SafetyPlan(),
-        ),
-      );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SafetyPlan(),
+                  ),
+                );
               },
             ),
             InkWell(
@@ -78,7 +78,12 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                print("Click event on Container");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Reminders(),
+                  ),
+                );
               },
             ),
             InkWell(
@@ -162,7 +167,6 @@ class MyHomePage extends StatelessWidget {
         ));
   }
 
-
   SpeedDial buildSpeedDial() {
     return SpeedDial(
       /// both default to 16
@@ -226,7 +230,9 @@ class MyHomePage extends StatelessWidget {
           backgroundColor: Colors.orangeAccent,
           label: 'Call Helpline',
           labelStyle: TextStyle(fontSize: 18.0),
-          onTap: (){ launch('tel:8123303633');},
+          onTap: () {
+            launch('tel:8123303633');
+          },
           onLongPress: () => print('SECOND CHILD LONG PRESS'),
         ),
       ],

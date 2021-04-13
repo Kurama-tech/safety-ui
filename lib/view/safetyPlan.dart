@@ -317,6 +317,7 @@ class SafetyPlan extends StatelessWidget {
   ),
         ]
        ),
+       
 
    bottomNavigationBar:BottomNavigationBar(
   type: BottomNavigationBarType.fixed,

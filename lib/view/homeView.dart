@@ -198,7 +198,7 @@ class MyHomePage extends StatelessWidget {
       //animatedIcon: AnimatedIcons.play_pause,
       // animatedIconTheme: IconThemeData(size: 22.0),
       /// This is ignored if animatedIcon is non null
-      icon: CupertinoIcons.exclamationmark_circle,
+      icon: CupertinoIcons.exclamationmark_octagon,
       activeIcon: Icons.close,
       iconTheme: IconThemeData(color: Colors.red, size: 40),
 
@@ -216,7 +216,7 @@ class MyHomePage extends StatelessWidget {
       /// by tapping main button and overlay is not rendered.
       closeManually: false,
       curve: Curves.easeInOutCirc,
-      overlayColor: Colors.black,
+      overlayColor: Colors.black87,
       overlayOpacity: 0.7,
       onOpen: () => print('OPENING DIAL'),
       onClose: () => print('DIAL CLOSED'),

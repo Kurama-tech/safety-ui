@@ -27,7 +27,11 @@ class SafetyPlan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+            side: BorderSide(width: 2, color: Colors.white)),
+      ),
       body: ListView(children: [
         new Column(
             mainAxisAlignment: MainAxisAlignment.start,

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -5,6 +6,7 @@ import 'package:safety/view/remindersView.dart';
 import 'package:safety/view/resourcesView.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:safety/view/safetyPlanView.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({key}) : super(key: key);
@@ -193,12 +195,12 @@ class MyHomePage extends StatelessWidget {
       /// both default to 16
       marginEnd: 19,
       marginBottom: 21,
-      animatedIcon: AnimatedIcons.play_pause,
+      //animatedIcon: AnimatedIcons.play_pause,
       // animatedIconTheme: IconThemeData(size: 22.0),
       /// This is ignored if animatedIcon is non null
-      icon: Icons.warning,
+      icon: CupertinoIcons.exclamationmark_octagon,
       activeIcon: Icons.close,
-      iconTheme: IconThemeData(color: Colors.grey[50], size: 30),
+      iconTheme: IconThemeData(color: Colors.red, size: 40),
 
       /// The label of the main button.
       //label: Text(""),
@@ -214,7 +216,7 @@ class MyHomePage extends StatelessWidget {
       /// by tapping main button and overlay is not rendered.
       closeManually: false,
       curve: Curves.easeInOutCirc,
-      overlayColor: Colors.black,
+      overlayColor: Colors.black87,
       overlayOpacity: 0.7,
       onOpen: () => print('OPENING DIAL'),
       onClose: () => print('DIAL CLOSED'),

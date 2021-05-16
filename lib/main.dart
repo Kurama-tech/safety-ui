@@ -25,6 +25,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => Notes()),
         ChangeNotifierProvider(create: (_) => ContactsP()),
         ChangeNotifierProvider(create: (_) => Places()),
+        ChangeNotifierProvider(create: (_) => AppointmentsP()),
+        ChangeNotifierProvider(create: (_) => MedicationsP()),
       ],
       child: const MyApp(),
     ),

@@ -22,12 +22,13 @@ class UniversalProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
 class Warning with ChangeNotifier {
- List<UnversalModel> data;
-  
+  List<UnversalModel> data;
+
   bool flag = false;
   bool noData = false;
-  
+
   setData(dbData) {
     data = dbData;
     flag = true;
@@ -37,12 +38,13 @@ class Warning with ChangeNotifier {
     notifyListeners();
   }
 }
+
 class Coping with ChangeNotifier {
   List<UnversalModel> data;
-  
+
   bool flag = false;
   bool noData = false;
-  
+
   setData(dbData) {
     data = dbData;
     flag = true;
@@ -52,12 +54,13 @@ class Coping with ChangeNotifier {
     notifyListeners();
   }
 }
+
 class Reasons with ChangeNotifier {
- List<UnversalModel> data;
-  
+  List<UnversalModel> data;
+
   bool flag = false;
   bool noData = false;
-  
+
   setData(dbData) {
     data = dbData;
     flag = true;
@@ -70,10 +73,10 @@ class Reasons with ChangeNotifier {
 
 class Places with ChangeNotifier {
   List<UnversalModel> data;
-  
+
   bool flag = false;
   bool noData = false;
-  
+
   setData(dbData) {
     data = dbData;
     flag = true;
@@ -85,11 +88,11 @@ class Places with ChangeNotifier {
 }
 
 class Notes with ChangeNotifier {
- List<UnversalModel> data;
-  
+  List<UnversalModel> data;
+
   bool flag = false;
   bool noData = false;
-  
+
   setData(dbData) {
     data = dbData;
     flag = true;
@@ -102,10 +105,39 @@ class Notes with ChangeNotifier {
 
 class ContactsP with ChangeNotifier {
   List<Contacts> data;
-  
+
   bool flag = false;
   bool noData = false;
-  
+
+  setData(dbData) {
+    data = dbData;
+    flag = true;
+    if (dbData.length < 1) {
+      noData = true;
+    }
+    notifyListeners();
+  }
+}
+
+class AppointmentsP with ChangeNotifier {
+  List<AppointmentsModel> data;
+  bool flag = false;
+  bool noData = false;
+  setData(dbData) {
+    data = dbData;
+    flag = true;
+    if (dbData.length < 1) {
+      noData = true;
+    }
+    notifyListeners();
+  }
+}
+
+class MedicationsP with ChangeNotifier {
+
+  List<MedicationsModel> data;
+  bool flag = false;
+  bool noData = false;
   setData(dbData) {
     data = dbData;
     flag = true;

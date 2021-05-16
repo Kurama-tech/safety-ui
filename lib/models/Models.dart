@@ -27,11 +27,7 @@ class Contacts {
   Contacts({this.id, this.name, this.number});
 
   Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'number': number
-    };
+    return {'id': id, 'name': name, 'number': number};
   }
 
   // Implement toString to make it easier to see information about
@@ -39,5 +35,27 @@ class Contacts {
   @override
   String toString() {
     return 'Contacts{id: $id, name: $name, number: $number}';
+  }
+}
+
+class AppointmentsModel {
+  final int id;
+  final String docName;
+  final DateTime dateTime;
+
+  AppointmentsModel({this.id, this.docName, this.dateTime});
+  Map<String, dynamic> toMap(){
+    return {'id': id, 'docName': docName, 'Date': dateTime};
+  }
+}
+
+class MedicationsModel {
+  final int id;
+  final String tabName;
+  final DateTime dateTime;
+
+  MedicationsModel({this.id, this.tabName, this.dateTime});
+  Map<String, dynamic> toMap(){
+    return {'id': id, 'docName': tabName, 'Date': dateTime};
   }
 }

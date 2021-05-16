@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:safety/view/Appointments.dart';
+import 'package:safety/view/Medications.dart';
 
 class Reminders extends StatefulWidget {
   const Reminders({key}) : super(key: key);
@@ -20,7 +22,7 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         title: Text("Remainders"),
+        title: Text("Remainders"),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
             side: BorderSide(width: 2, color: Colors.white)),
@@ -44,17 +46,38 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
         controller: _tabController,
         children: [
           Center(
-            child: Text('It\'s cloudy here'),
+            child: Wrap(
+              alignment: WrapAlignment.end,
+              children: [
+                Medication(title: 'Medications'),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Add Medications'),
+                  ),
+                )
+              ],
+            ),
           ),
           Center(
-            child: Text('It\'s rainy here'),
+            child: Wrap(
+              alignment: WrapAlignment.end,
+              children: [
+                Appointments(
+                  title: 'Appointments',
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Add Appointments'),
+                  ),
+                )
+              ],
+            ),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.teal,
       ),
     );
   }

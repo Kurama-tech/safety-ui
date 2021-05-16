@@ -70,10 +70,13 @@ class DatabaseHandler {
   }
 
   Future<int> getLastID(Database database, String table) async {
-    final String query = "SELECT * FROM " + table + " ORDER BY id DESC LIMIT 1";
-    final List<Map<String, dynamic>> data = await database.rawQuery(query);
-
-    return data[0]['id'];
+    final String query =
+        "SELECT id FROM " + table + " ORDER BY id DESC LIMIT 1";
+    var count = Sqflite.firstIntValue(await database.rawQuery(query));
+    if (count != null) {
+      return count;
+    }
+    return 0;
   }
 
   Future<List<UnversalModel>> getListData(

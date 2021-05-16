@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:safety/view/DetailsView.dart';
 
+
 class SafetyPlan extends StatelessWidget {
   Widget containerData(BuildContext context, IconData icon, String title,
       String subtitle, String table) {

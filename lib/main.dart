@@ -2,6 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:safety/provider/Universal.dart';
 import 'package:safety/provider/counter.dart';
 
 import 'package:safety/view/homeView.dart';
@@ -17,6 +18,13 @@ void main() {
       
       providers: [
         ChangeNotifierProvider(create: (_) => Counter()),
+        ChangeNotifierProvider(create: (_) => UniversalProvider()),
+        ChangeNotifierProvider(create: (_) => Warning()),
+        ChangeNotifierProvider(create: (_) => Coping()),
+        ChangeNotifierProvider(create: (_) => Reasons()),
+        ChangeNotifierProvider(create: (_) => Notes()),
+        ChangeNotifierProvider(create: (_) => ContactsP()),
+        ChangeNotifierProvider(create: (_) => Places()),
       ],
       child: const MyApp(),
     ),

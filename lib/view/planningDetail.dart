@@ -26,6 +26,7 @@ class _PlanningState extends State<PlanningDetail>
   bool noData = false;
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
 
     final dataProvider = getPerfectProvider(widget.table, false);

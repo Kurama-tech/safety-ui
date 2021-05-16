@@ -6,6 +6,7 @@ import 'package:safety/view/remindersView.dart';
 import 'package:safety/view/resourcesView.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:safety/view/safetyPlanView.dart';
+// ignore: unused_import
 import 'package:cupertino_icons/cupertino_icons.dart';
 
 class MyHomePage extends StatelessWidget {

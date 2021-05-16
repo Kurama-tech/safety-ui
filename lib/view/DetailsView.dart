@@ -10,6 +10,7 @@ class Details extends StatelessWidget {
   const Details({Key key, this.title, this.description, this.table}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // ignore: todo
     // TODO: implement build
     return new Scaffold(
       appBar: AppBar(

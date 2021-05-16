@@ -8,6 +8,7 @@ class Resources extends StatelessWidget {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
             side: BorderSide(width: 2, color: Colors.white)),
+
       ),
     );
   }

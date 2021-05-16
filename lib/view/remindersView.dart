@@ -70,7 +70,9 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await _showStepper(context);
+                    },
                     child: Text('Add Appointments'),
                   ),
                 )
@@ -80,5 +82,30 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
         ],
       ),
     );
+  }
+
+  Future<void> _showStepper(BuildContext context) async {
+    int _index = 0;
+    return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Add an Appointment'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: [Text("hello")],
+              ),
+            ),
+            actions: [
+              TextButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 }

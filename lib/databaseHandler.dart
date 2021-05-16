@@ -1,3 +1,4 @@
+import 'package:safety/view/Appointments.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:safety/models/Models.dart';
@@ -25,6 +26,10 @@ class DatabaseHandler {
           'CREATE TABLE IF NOT EXISTS Notes (id INTEGER PRIMARY KEY, statergy TEXT)');
       await db.execute(
           'CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY, name TEXT, number INTEGER)');
+      await db.execute(
+          'CREATE TABLE IF NOT EXISTS Medications (id INTEGER PRIMARY KEY, tabName TEXT, dateTime TEXT)');
+      await db.execute(
+          'CREATE TABLE IF NOT EXISTS Appointments (id INTEGER PRIMARY KEY, docName TEXT, dateTime TEXT)');
     });
     return database;
   }
@@ -39,6 +44,34 @@ class DatabaseHandler {
     if (database.isOpen) {
       return await database.insert(table, data.toMap(),
           conflictAlgorithm: ConflictAlgorithm.replace);
+    }
+  }
+
+  insertMedication(Database database, MedicationsModel data) async {
+    if (database.isOpen) {
+      return await database.insert('Medications', data.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace);
+    }
+  }
+
+  updateMedication(Database database, MedicationsModel data) async {
+    if (database.isOpen) {
+      await database
+          .update('Medications', data.toMap(), where: "id = ?", whereArgs: [data.id]);
+    }
+  }
+
+  insertAppointment(Database database, AppointmentsModel data) async {
+    if (database.isOpen) {
+      return await database.insert('Appointments', data.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace);
+    }
+  }
+
+  updateAppointment(Database database, AppointmentsModel data) async {
+    if (database.isOpen) {
+      await database
+          .update('Appointments', data.toMap(), where: "id = ?", whereArgs: [data.id]);
     }
   }
 
@@ -88,6 +121,28 @@ class DatabaseHandler {
           id: data[index]['id'], statergy: data[index]['statergy']);
     });
   }
+
+  Future<List<AppointmentsModel>> getListAppointments(
+      Database database) async {
+    final List<Map<String, dynamic>> data = await database.query('Appointments');
+
+    return List.generate(data.length, (index) {
+      return AppointmentsModel(
+          id: data[index]['id'], docName: data[index]['docName'], dateTime: data[index]['dateTime']);
+    });
+  }
+
+  Future<List<MedicationsModel>> getListMedications(
+      Database database) async {
+    final List<Map<String, dynamic>> data = await database.query('Medications');
+
+    return List.generate(data.length, (index) {
+      return MedicationsModel(
+          id: data[index]['id'], tabName: data[index]['tabName'], dateTime: data[index]['dateTime']);
+    });
+  }
+
+
 
   Future<List<Contacts>> getListDataContacts(
       Database database, String table) async {

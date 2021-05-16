@@ -23,6 +23,7 @@ class _PlanningState extends State<PlanningDetail>
   Contacts modelC = Contacts(id: 1, name: "Sawood", number: 8123303633);
   int itemCount = 0;
   int nextId = 0;
+  bool isContactG = false;
   bool noData = false;
   @override
   void initState() {
@@ -39,6 +40,7 @@ class _PlanningState extends State<PlanningDetail>
         print(widget.table);
         print(value);
         print(isContact);
+        isContactG = isContact;
         itemCount = value;
         nextId = itemCount + 1;
         if (value > 0) {
@@ -118,8 +120,14 @@ class _PlanningState extends State<PlanningDetail>
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
               onPressed: () {
-                _showMyDialog(context, this.widget.title, false, nextId,
+                if(isContactG){
+                   _showMyDialogContacts(context, this.widget.title,
+                              false, nextId, this.widget.table);
+                }
+                else{
+                  _showMyDialog(context, this.widget.title, false, nextId,
                     this.widget.table);
+                }
               },
               child: Text('Add ' + this.widget.title),
             ),
@@ -147,6 +155,7 @@ class _PlanningState extends State<PlanningDetail>
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
                       onPressed: () {
+                        print(isContact);
                         if (isContact) {
                           _showMyDialogContacts(context, this.widget.title,
                               false, nextId, this.widget.table);

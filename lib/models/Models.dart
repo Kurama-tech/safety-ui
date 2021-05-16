@@ -41,7 +41,7 @@ class Contacts {
 class AppointmentsModel {
   final int id;
   final String docName;
-  final DateTime dateTime;
+  final String dateTime;
 
   AppointmentsModel({this.id, this.docName, this.dateTime});
   Map<String, dynamic> toMap(){
@@ -52,7 +52,7 @@ class AppointmentsModel {
 class MedicationsModel {
   final int id;
   final String tabName;
-  final DateTime dateTime;
+  final String dateTime;
 
   MedicationsModel({this.id, this.tabName, this.dateTime});
   Map<String, dynamic> toMap(){

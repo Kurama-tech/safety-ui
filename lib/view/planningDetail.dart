@@ -115,10 +115,12 @@ class _PlanningState extends State<PlanningDetail>
         children: [
           Align(
               alignment: Alignment.center,
-              child: Text("Oop's No Data here..!")),
+              child: Image.asset("assets/images/3009286-ai.png")),
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.cyan[900])),
+              
               onPressed: () {
                 if(isContactG){
                    _showMyDialogContacts(context, this.widget.title,
@@ -154,6 +156,7 @@ class _PlanningState extends State<PlanningDetail>
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.cyan[900])),
                       onPressed: () {
                         print(isContact);
                         if (isContact) {
@@ -243,7 +246,7 @@ class _PlanningState extends State<PlanningDetail>
       [UnversalModel data]) async {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     TextEditingController _statergyTextCtrl = TextEditingController();
-    String addorEdit = 'Add ';
+    String addorEdit = 'Add';
     if (isEditMode && data != null) {
       addorEdit = 'Edit ';
       _statergyTextCtrl.text = data.statergy;

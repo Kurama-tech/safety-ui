@@ -22,7 +22,7 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Remainders"),
+        title: Text("Reminders"),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
             side: BorderSide(width: 2, color: Colors.white)),
@@ -50,9 +50,13 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
               alignment: WrapAlignment.end,
               children: [
                 Medication(title: 'Medications'),
+                 Align(
+              alignment: Alignment.center,
+              child: Image.asset("assets/images/3009286-ai.png")),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.cyan[900])),
                     onPressed: () {},
                     child: Text('Add Medications'),
                   ),
@@ -67,9 +71,13 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
                 Appointments(
                   title: 'Appointments',
                 ),
+                 Align(
+              alignment: Alignment.center,
+              child: Image.asset("assets/images/3009286-ai.png")),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton(
+                    style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.cyan[900])),
                     onPressed: () async {
                       await _showStepper(context);
                     },

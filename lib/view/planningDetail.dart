@@ -4,6 +4,7 @@ import 'package:safety/databaseHandler.dart';
 import 'package:safety/models/Models.dart';
 import 'package:safety/provider/Universal.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PlanningDetail extends StatefulWidget {
   PlanningDetail({Key key, this.title, this.description, this.table})
@@ -119,16 +120,15 @@ class _PlanningState extends State<PlanningDetail>
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.cyan[900])),
-              
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.cyan[900])),
               onPressed: () {
-                if(isContactG){
-                   _showMyDialogContacts(context, this.widget.title,
-                              false, nextId, this.widget.table);
-                }
-                else{
+                if (isContactG) {
+                  _showMyDialogContacts(context, this.widget.title, false,
+                      nextId, this.widget.table);
+                } else {
                   _showMyDialog(context, this.widget.title, false, nextId,
-                    this.widget.table);
+                      this.widget.table);
                 }
               },
               child: Text('Add ' + this.widget.title),
@@ -156,7 +156,9 @@ class _PlanningState extends State<PlanningDetail>
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
-                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.cyan[900])),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.cyan[900])),
                       onPressed: () {
                         print(isContact);
                         if (isContact) {
@@ -185,20 +187,42 @@ class _PlanningState extends State<PlanningDetail>
         itemBuilder: (context, i) {
           final datalist = universalData.data[i];
           return Container(
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
             height: 100,
+            width: double.maxFinite,
             child: InkWell(
+              splashColor: Colors.greenAccent,
               child: Card(
                 elevation: 5,
                 child: Center(
                   child: ListTile(
-                    leading: Text(datalist.id.toString()),
-                    title: Text(datalist.statergy),
-                    trailing: IconButton(
-                      icon: Icon(Icons.edit),
-                      onPressed: () {
-                        _showMyDialog(context, this.widget.title, true,
-                            datalist.id, this.widget.table, datalist);
-                      },
+                    leading: Icon(
+                      Icons.label_important,
+                      color: Colors.cyan[900],
+                    ),
+                    title: Text(
+                      datalist.statergy,
+                      style: GoogleFonts.lora(),
+                    ),
+                    trailing: Wrap(
+                      spacing: 8,
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(
+                            Icons.edit,
+                            color: Colors.blueAccent,
+                          ),
+                          onPressed: () {
+                            _showMyDialog(context, this.widget.title, true,
+                                datalist.id, this.widget.table, datalist);
+                          },
+                        ),
+                        IconButton(
+                            icon: Icon(Icons.delete, color: Colors.red),
+                            onPressed: () {
+                             
+                            }),
+                      ],
                     ),
                   ),
                 ),
@@ -286,7 +310,8 @@ class _PlanningState extends State<PlanningDetail>
           ),
           actions: <Widget>[
             TextButton(
-              child: Text(addorEdit + title),
+              child: Text(addorEdit + title,
+                  style: TextStyle(color: (Colors.cyan[900]))),
               onPressed: () async {
                 try {
                   if (_formKey.currentState.validate()) {
@@ -332,8 +357,15 @@ class _PlanningState extends State<PlanningDetail>
                 }
               },
             ),
-            TextButton(
-              child: Text('Cancel'),
+            TextButton.icon(
+              label: Text(
+                'Cancel',
+                style: TextStyle(color: (Colors.red[900])),
+              ),
+              icon: Icon(
+                Icons.cancel,
+                color: Colors.red[900],
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -349,8 +381,11 @@ class _PlanningState extends State<PlanningDetail>
       int id, bool isContacts) {
     final dataProvider = getPerfectProvider(table, false);
     if (showDelete) {
-      return TextButton(
-        child: Text('Delete'),
+      return IconButton(
+        icon: Icon(
+          Icons.delete,
+          color: Colors.red,
+        ),
         onPressed: () async {
           await dbhelper
               .deleteUniversal(dbConnection, table, id)

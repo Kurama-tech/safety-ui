@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:safety/view/Appointments.dart';
 import 'package:safety/view/Medications.dart';
 
+
 class Reminders extends StatefulWidget {
   const Reminders({key}) : super(key: key);
 
@@ -14,8 +15,9 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    super.initState();
     _tabController = TabController(length: 2, vsync: this);
+
+    super.initState();
   }
 
   @override
@@ -45,67 +47,12 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: [
-          Center(
-            child: Wrap(
-              alignment: WrapAlignment.end,
-              children: [
-                Medication(title: 'Medications'),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Add Medications'),
-                  ),
-                )
-              ],
+           Medication(title: 'Medications'),
+           Appointments(
+              title: 'Appointments',
             ),
-          ),
-          Center(
-            child: Wrap(
-              alignment: WrapAlignment.end,
-              children: [
-                Appointments(
-                  title: 'Appointments',
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      await _showStepper(context);
-                    },
-                    child: Text('Add Appointments'),
-                  ),
-                )
-              ],
-            ),
-          ),
         ],
       ),
     );
-  }
-
-  Future<void> _showStepper(BuildContext context) async {
-    int _index = 0;
-    return showDialog<void>(
-        context: context,
-        barrierDismissible: false, // user must tap button!
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Add an Appointment'),
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: [Text("hello")],
-              ),
-            ),
-            actions: [
-              TextButton(
-                child: Text('Cancel'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        });
   }
 }

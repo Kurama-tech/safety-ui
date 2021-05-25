@@ -10,7 +10,7 @@ class DatabaseHandler {
   Future<Database> onDbInit() async {
     databasesPath = await getDatabasesPath();
     databasesPath = join(databasesPath, 'Safety.db');
-    // await deleteDatabase(databasesPath);
+    //await deleteDatabase(databasesPath);
     database = await openDatabase(databasesPath, version: 1,
         onCreate: (Database db, int version) async {
       // When creating the db, create the table

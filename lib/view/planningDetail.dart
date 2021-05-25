@@ -39,26 +39,21 @@ class _PlanningState extends State<PlanningDetail>
       dbhelper.getLastID(database, this.widget.table).then((value) {
         print(widget.table);
         print(value);
-        print(isContact);
+        //print(isContact);
         isContactG = isContact;
         itemCount = value;
         nextId = itemCount + 1;
-        if (value > 0) {
-          if (isContact) {
-            print('helloo ooo');
-            dbhelper
-                .getListDataContacts(database, this.widget.table)
-                .then((value) {
-              dataProvider.setData(value);
-            });
-          } else {
-            dbhelper.getListData(database, this.widget.table).then((value) {
-              dataProvider.setData(value);
-            });
-          }
+
+        if (isContact) {
+          print('helloo ooo');
+          dbhelper
+              .getListDataContacts(database, this.widget.table)
+              .then((value) {
+            dataProvider.setData(value);
+          });
         } else {
-          setState(() {
-            noData = true;
+          dbhelper.getListData(database, this.widget.table).then((value) {
+            dataProvider.setData(value);
           });
         }
       });
@@ -108,7 +103,7 @@ class _PlanningState extends State<PlanningDetail>
   }
 
   Widget noDataProgress(bool nodata) {
-    if (noData) {
+    if (nodata) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,13 +115,12 @@ class _PlanningState extends State<PlanningDetail>
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
               onPressed: () {
-                if(isContactG){
-                   _showMyDialogContacts(context, this.widget.title,
-                              false, nextId, this.widget.table);
-                }
-                else{
+                if (isContactG) {
+                  _showMyDialogContacts(context, this.widget.title, false,
+                      nextId, this.widget.table);
+                } else {
                   _showMyDialog(context, this.widget.title, false, nextId,
-                    this.widget.table);
+                      this.widget.table);
                 }
               },
               child: Text('Add ' + this.widget.title),
@@ -145,6 +139,7 @@ class _PlanningState extends State<PlanningDetail>
     // final universalData = Provider.of<UniversalProvider>(context);
     final dataProvider = getPerfectProvider(this.widget.table, true);
     bool isContact = this.widget.table == 'Contacts' ? true : false;
+
     return Center(
         child: !dataProvider.flag || dataProvider.noData
             ? noDataProgress(dataProvider.noData)
@@ -316,7 +311,10 @@ class _PlanningState extends State<PlanningDetail>
                         await dbhelper
                             .getListData(dbConnection, table)
                             .then((value) {
+                          print(value.toString());
+                          print(value.length == 0);
                           dataProvider.setData(value);
+
                           Navigator.of(context).pop();
                         });
                       });
@@ -469,6 +467,7 @@ class _PlanningState extends State<PlanningDetail>
                         await dbhelper
                             .getListDataContacts(dbConnection, table)
                             .then((value) {
+                          print(value.toString());
                           dataProvider.setData(value);
                           Navigator.of(context).pop();
                         });

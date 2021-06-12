@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:safety/view/Appointments.dart';
 import 'package:safety/view/Medications.dart';
 
-
 class Reminders extends StatefulWidget {
   const Reminders({key}) : super(key: key);
 
@@ -24,7 +23,7 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Remainders"),
+        title: Text("Reminders"),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
             side: BorderSide(width: 2, color: Colors.white)),
@@ -47,10 +46,10 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: [
-           Medication(title: 'Medications'),
-           Appointments(
-              title: 'Appointments',
-            ),
+          Medication(title: 'Medications'),
+          Appointments(
+            title: 'Appointments',
+          ),
         ],
       ),
     );

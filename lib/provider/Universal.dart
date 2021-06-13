@@ -30,16 +30,12 @@ class Warning with ChangeNotifier {
   bool noData = false;
 
   setData(dbData) {
-    if (dbData.length == 0) {
+    data = dbData;
+    flag = true;
+    if (dbData.length < 1) {
       noData = true;
       data = null;
-      flag = true;
-      notifyListeners();
-    } else {
-      data = dbData;
-      print('here');
-      flag = true;
-      notifyListeners();
+      flag = false;
     }
     notifyListeners();
   }
@@ -57,6 +53,7 @@ class Coping with ChangeNotifier {
     if (dbData.length < 1) {
       noData = true;
       data = null;
+      flag = false;
     }
     notifyListeners();
   }
@@ -74,6 +71,7 @@ class Reasons with ChangeNotifier {
     if (dbData.length < 1) {
       noData = true;
       data = null;
+      flag = false;
     }
     notifyListeners();
   }
@@ -91,6 +89,7 @@ class Places with ChangeNotifier {
     if (dbData.length < 1) {
       noData = true;
       data = null;
+      flag = false;
     }
     notifyListeners();
   }
@@ -108,6 +107,7 @@ class Notes with ChangeNotifier {
     if (dbData.length < 1) {
       noData = true;
       data = null;
+      flag = false;
     }
     notifyListeners();
   }
@@ -125,6 +125,7 @@ class ContactsP with ChangeNotifier {
     if (dbData.length < 1) {
       noData = true;
       data = null;
+      flag = false;
     }
     notifyListeners();
   }
@@ -137,9 +138,11 @@ class AppointmentsP with ChangeNotifier {
   setData(dbData) {
     data = dbData;
     flag = true;
+    print(dbData.length);
     if (dbData.length < 1) {
       noData = true;
       data = null;
+      flag = false;
     }
     notifyListeners();
   }
@@ -155,6 +158,7 @@ class MedicationsP with ChangeNotifier {
     if (dbData.length < 1) {
       noData = true;
       data = null;
+      flag = false;
     }
     notifyListeners();
   }

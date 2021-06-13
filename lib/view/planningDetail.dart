@@ -63,6 +63,8 @@ class _PlanningState extends State<PlanningDetail>
     super.initState();
   }
 
+  commonInit(Database db, String table) {}
+
   getPerfectProvider(String table, bool listen) {
     switch (table) {
       case 'Warning':
@@ -104,7 +106,9 @@ class _PlanningState extends State<PlanningDetail>
   }
 
   Widget noDataProgress(bool nodata) {
-    if (nodata) {
+    final dataProvider = getPerfectProvider(this.widget.table, true);
+
+    if (dataProvider.noData) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +148,7 @@ class _PlanningState extends State<PlanningDetail>
     bool isContact = this.widget.table == 'Contacts' ? true : false;
 
     return Center(
-        child: !dataProvider.flag || dataProvider.noData
+        child: !dataProvider.flag
             ? noDataProgress(dataProvider.noData)
             : ListView(
                 children: <Widget>[
@@ -341,8 +345,10 @@ class _PlanningState extends State<PlanningDetail>
                           print(value.toString());
                           print(value.length == 0);
                           dataProvider.setData(value);
-
-                          Navigator.of(context).pop();
+                          setState(() {
+                            nextId = nextId + 1;
+                            Navigator.of(context).pop();
+                          });
                         });
                       });
                     }
@@ -393,13 +399,28 @@ class _PlanningState extends State<PlanningDetail>
               await dbhelper
                   .getListDataContacts(dbConnection, table)
                   .then((value) {
+                
+                print("delete : " + value.toString());
+                
                 dataProvider.setData(value);
+                print("delete : " + dataProvider.toString());
+                
+                nextId = nextId - 1;
+                if (nextId < 0) {
+                  nextId = 0;
+                }
                 Navigator.of(context).pop();
+                setState(() {});
               });
             } else {
               await dbhelper.getListData(dbConnection, table).then((value) {
                 dataProvider.setData(value);
+                nextId = nextId - 1;
+                if (nextId < 0) {
+                  nextId = 0;
+                }
                 Navigator.of(context).pop();
+                setState(() {});
               });
             }
           });
@@ -480,6 +501,7 @@ class _PlanningState extends State<PlanningDetail>
                     final dataProvider = getPerfectProvider(table, false);
                     Contacts model =
                         Contacts(id: id, name: name, number: int.parse(number));
+
                     if (isEditMode) {
                       await dbhelper
                           .updateContact(dbConnection, table, model)
@@ -491,7 +513,9 @@ class _PlanningState extends State<PlanningDetail>
                             .getListDataContacts(dbConnection, table)
                             .then((value) {
                           dataProvider.setData(value);
-                          Navigator.of(context).pop();
+                          setState(() {
+                            Navigator.of(context).pop();
+                          });
                         });
                       });
                     } else {
@@ -506,7 +530,11 @@ class _PlanningState extends State<PlanningDetail>
                             .then((value) {
                           print(value.toString());
                           dataProvider.setData(value);
-                          Navigator.of(context).pop();
+
+                          setState(() {
+                            nextId = nextId + 1;
+                            Navigator.of(context).pop();
+                          });
                         });
                       });
                     }

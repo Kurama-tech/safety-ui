@@ -46,7 +46,8 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: [
-          Medication(title: 'Medications'),
+          //Medication(title: 'Medications'),
+          Container(),
           Appointments(
             title: 'Appointments',
           ),

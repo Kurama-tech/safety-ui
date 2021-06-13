@@ -47,6 +47,11 @@ class AppointmentsModel {
   Map<String, dynamic> toMap(){
     return {'id': id, 'docName': docName, 'dateTime': dateTime};
   }
+
+   @override
+  String toString() {
+    return 'Appointments{id: $id, name: $docName, number: $dateTime}';
+  }
 }
 
 class MedicationsModel {

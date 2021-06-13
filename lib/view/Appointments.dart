@@ -91,7 +91,8 @@ class _AppointmentsState extends State<Appointments>
   }
 
   Widget noDataProgress(bool nodata) {
-    if (nodata) {
+    final provider = Provider.of<AppointmentsP>(context);
+    if (provider.noData) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -142,15 +143,14 @@ class _AppointmentsState extends State<Appointments>
                               trailing: IconButton(
                                 icon: Icon(Icons.edit),
                                 onPressed: () async {
-                                  await _showStepper(context, datalist.id, true, datalist);
+                                  await _showStepper(
+                                      context, datalist.id, true, datalist);
                                 },
                               ),
                             ),
                           ),
                         ),
-                        onTap: () {
-                          
-                        },
+                        onTap: () {},
                       ),
                     );
                   }),
@@ -167,8 +167,8 @@ class _AppointmentsState extends State<Appointments>
     );
   }
 
-  Widget deleteButtonWidget(BuildContext context, bool showDelete, String table,
-      int id) {
+  Widget deleteButtonWidget(
+      BuildContext context, bool showDelete, String table, int id) {
     final dataProvider = Provider.of<AppointmentsP>(context, listen: false);
     if (showDelete) {
       return TextButton(
@@ -179,12 +179,14 @@ class _AppointmentsState extends State<Appointments>
               .then((value) async {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text("Delete Successfull")));
-             
-              await dbhelper.getListData(dbConnection, table).then((value) {
-                dataProvider.setData(value);
+
+            await dbhelper.getListAppointments(dbConnection).then((value) {
+              dataProvider.setData(value);
+              setState(() {
+                nextId = nextId - 1;
                 Navigator.of(context).pop();
               });
-            
+            });
           });
         },
       );
@@ -346,13 +348,15 @@ class _AppointmentsState extends State<Appointments>
                       AppointmentsModel model = AppointmentsModel(
                           id: id, docName: finaltext, dateTime: finalSelected);
                       if (isEdit) {
-                        await dbhelper.updateAppointment(dbConnection, model).then((value) {
+                        await dbhelper
+                            .updateAppointment(dbConnection, model)
+                            .then((value) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text("Appointment Edited Successfully")));
+                              content:
+                                  Text("Appointment Edited Successfully")));
                           dbhelper
                               .getListAppointments(dbConnection)
                               .then((value) {
-                            
                             provider.setData(value);
                             Navigator.of(context).pop();
                           });
@@ -366,9 +370,14 @@ class _AppointmentsState extends State<Appointments>
                           dbhelper
                               .getListAppointments(dbConnection)
                               .then((value) {
-                            
+                            print("value added:" + value.toString());
                             provider.setData(value);
-                            Navigator.of(context).pop();
+                            print("provider data noData status:" + provider.noData.toString());
+                            print("value added:" + provider.flag.toString());
+                            setState(() {
+                              nextId = nextId + 1;
+                              Navigator.of(context).pop();
+                            });
                           });
                         });
                       }

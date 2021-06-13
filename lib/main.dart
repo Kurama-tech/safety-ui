@@ -2,11 +2,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:safety/global_bloc.dart';
 import 'package:safety/provider/Universal.dart';
 import 'package:safety/provider/counter.dart';
 
 import 'package:safety/view/homeView.dart';
-
+import 'package:safety/view/remindersView.dart';
+import 'package:safety/view/resourcesView.dart';
+import 'package:safety/view/safetyPlanView.dart';
 
 /// This is a reimplementation of the default Flutter application using provider + [ChangeNotifier].
 
@@ -15,7 +18,6 @@ void main() {
     /// Providers are above [MyApp] instead of inside it, so that tests
     /// can use [MyApp] while mocking the providers
     MultiProvider(
-      
       providers: [
         ChangeNotifierProvider(create: (_) => Counter()),
         ChangeNotifierProvider(create: (_) => UniversalProvider()),
@@ -30,31 +32,46 @@ void main() {
       ],
       child: const MyApp(),
     ),
-    
   );
 }
 
 /// Mix-in [DiagnosticableTreeMixin] to have access to [debugFillProperties] for the devtool
 // ignore: prefer_mixin
 
-
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-      theme: ThemeData(
-        primaryColor: Colors.greenAccent,
-        textTheme: TextTheme(
-          headline4: TextStyle(color: Colors.black)
-        ),
-        appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.black)),
-      )
-
-    );
-  }
+  _MyApp createState() => _MyApp();
 }
 
+class _MyApp extends State<MyApp> {
+  GlobalBloc globalBloc;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    globalBloc = GlobalBloc();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Provider<GlobalBloc>.value(
+        value: globalBloc,
+        child: MaterialApp(
+            home: MyHomePage(),
+            initialRoute: '/',
+            routes: {
+              '/SafetyPlan': (context) => SafetyPlan(),
+              '/Reminders': (context) => Reminders(),
+              '/Resources': (context) => Resources(),
+            },
+            theme: ThemeData(
+              primaryColor: Colors.greenAccent,
+              textTheme: TextTheme(headline4: TextStyle(color: Colors.black)),
+              appBarTheme:
+                  AppBarTheme(iconTheme: IconThemeData(color: Colors.black)),
+            )));
+  }
+}

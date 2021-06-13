@@ -45,7 +45,12 @@ class AppointmentsModel {
 
   AppointmentsModel({this.id, this.docName, this.dateTime});
   Map<String, dynamic> toMap(){
-    return {'id': id, 'docName': docName, 'Date': dateTime};
+    return {'id': id, 'docName': docName, 'dateTime': dateTime};
+  }
+
+   @override
+  String toString() {
+    return 'Appointments{id: $id, name: $docName, number: $dateTime}';
   }
 }
 
@@ -56,6 +61,6 @@ class MedicationsModel {
 
   MedicationsModel({this.id, this.tabName, this.dateTime});
   Map<String, dynamic> toMap(){
-    return {'id': id, 'docName': tabName, 'Date': dateTime};
+    return {'id': id, 'docName': tabName, 'dateTime': dateTime};
   }
 }

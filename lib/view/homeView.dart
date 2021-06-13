@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:safety/view/musicView.dart';
 import 'package:safety/view/remindersView.dart';
 import 'package:safety/view/resourcesView.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -157,7 +158,12 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                print("Click event on Container");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Music(),
+                  ),
+                );
               },
             ),
 

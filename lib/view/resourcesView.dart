@@ -50,21 +50,23 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
         children: <Widget>[
           Container(
             child: Card(
-              elevation: 10,
+              elevation: 5,
               clipBehavior: Clip.antiAlias,
               child: Column(children: [
                 ListTile(
-                  leading: Icon(Icons.label_important),
-                  title: const Text('National Suicide Prevention Lifeline'),
+              //leading: Icon(Icons.label_important),
+                  title: const Text('National Suicide Prevention Lifeline',style:TextStyle(fontSize: 20) ,),
                   subtitle: Text(
                     'If you are thinking about harming yourself, Please call the National Suicide Prevention Lifeline(Press 1 if you are a Veteran). The Lifeline is available 24/7 for free and confidential support ',
-                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                   style: GoogleFonts.robotoSlab(fontSize: 15.0),
                   ),
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.cyan[900])),
+                          MaterialStateProperty.all(Colors.cyan),shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
+                    
+                          
                   onPressed: () {
                     launch('tel:18002738255');
                   },
@@ -73,29 +75,27 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                 ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.cyan[900])),
+                          MaterialStateProperty.all(Colors.cyan),shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
                   onPressed: () {
                     launch('https://suicidepreventionlifeline.org/chat/');
                   },
                   child: Text("Chat with National Suicide Prevention Lifeline"),
                 ),
                 Card(
-                  elevation: 10,
-                  clipBehavior: Clip.antiAlias,
                   child: Column(children: [
                     ListTile(
-                      leading: Icon(Icons.label_important),
-                      title: const Text('Crisis Text Line'),
+                      //leading: Icon(Icons.label_important),
+                      title: const Text('Crisis Text Line',style: TextStyle(fontSize: 20),),
                       subtitle: Text(
-                        'To etxt with a Crisis Counselor, reach out to the Crisis Text Line. The Text line is free and available 24/7',
-                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                        'To text with a Crisis Counselor, reach out to the Crisis Text Line. The Text line is free and available 24/7',
+                        style: GoogleFonts.robotoSlab(fontSize: 15.0),
                       ),
                     ),
                     
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan[900])),
+                              MaterialStateProperty.all(Colors.cyan),shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
                       onPressed: () {
                         launch('https://www.crisistextline.org/');
                       },
@@ -108,21 +108,21 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
           ),
            Container(
             child: Card(
-              elevation: 10,
+              
               clipBehavior: Clip.antiAlias,
               child: Column(children: [
                 ListTile(
-                  leading: Icon(Icons.label_important),
-                  title: const Text('Find a VA Facility'),
+                  //leading: Icon(Icons.label_important),
+                  title: const Text('Find a VA Facility',style: TextStyle(fontSize: 20),),
                   subtitle: Text(
                     'The VA Offers a varierty of services including healthcare, counseling, and benefits. Click below to find your nearest VA location.',
-                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                    style: GoogleFonts.robotoSlab(fontSize: 15.0),
                   ),
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.cyan[900])),
+                          MaterialStateProperty.all(Colors.cyan),shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
                   onPressed: () {
                     launch('https://www.va.gov/');
                   },
@@ -130,22 +130,22 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                 ),
                 
                 Card(
-                  elevation: 10,
+                  
                   clipBehavior: Clip.antiAlias,
                   child: Column(children: [
                     ListTile(
-                      leading: Icon(Icons.label_important),
-                      title: const Text('Vet Centers'),
+                      //leading: Icon(Icons.label_important),
+                      title: const Text('Vet Centers',style: TextStyle(fontSize: 20),),
                       subtitle: Text(
                         'VetCenters also have care for Veterans, and continue to serve Veterans during any situation',
-                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                        style: GoogleFonts.robotoSlab(fontSize: 15.0),
                       ),
                     ),
                     
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan[900])),
+                              MaterialStateProperty.all(Colors.cyan),shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
                       onPressed: () {
                         launch('https://www.va.gov/find-locations');
                       },

@@ -204,7 +204,6 @@ class NotificationPlugin {
       importance: Importance.Max,
       priority: Priority.High,
       playSound: true,
-      timeoutAfter: 5000,
       styleInformation: DefaultStyleInformation(true, true),
     );
   }

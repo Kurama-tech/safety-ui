@@ -3,208 +3,108 @@ import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Music extends StatelessWidget {
+class MusicModel {
+  final String url;
+  final String title;
+
+  MusicModel(this.url, this.title);
+
+  Map<String, dynamic> toMap() {
+    return {'url': url, 'title': title};
+  }
+}
+
+class MusicView extends StatefulWidget {
+  const MusicView({key}) : super(key: key);
+
+  _MusicView createState() => _MusicView();
+}
+
+class _MusicView extends State<MusicView> {
+  List<MusicModel> data = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    data.add(new MusicModel('https://youtu.be/SUVVvni4W6I', 'Meditation Music'));
+    data.add(new MusicModel('https://youtu.be/YCLnDcEP-1I', 'Relaxing nature sound'));
+    data.add(new MusicModel('https://youtu.be/zPyg4N7bcHM', 'Calm Your Anxiety'));
+    data.add(new MusicModel('https://youtu.be/79kpoGF8KWU', 'Relief from Stress'));
+    data.add(new MusicModel('https://youtu.be/tEmt1Znux58', 'Relaxation technique'));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      
+    // TODO: implement build
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Color(0xFFF6F8FC),
       appBar: AppBar(
         title: Text("Music"),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
             side: BorderSide(width: 2, color: Colors.white)),
       ),
-      body: ListView(
-        children: [
-          Container(
-         padding: EdgeInsets.fromLTRB(10,10,10,0),
-                    height: 100,
-                    width: double.maxFinite,
-          child: InkWell(
-            child: Card(
-              elevation: 5,
-              child: Center(
-                child: ListTile(
-                  leading: Icon(Icons.videocam,size: 40,),
-                  title: Text(
-                    "Meditation Music",
-                    style: GoogleFonts.robotoSlab(fontSize: 15.0),
+      body: Container(
+        color: Color(0xFFF6F8FC),
+        child: GridView.builder(
+          padding: EdgeInsets.only(top: 12),
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: EdgeInsets.all(10.0),
+              child: InkWell(
+                highlightColor: Colors.white,
+                splashColor: Colors.grey,
+                onTap: () async {
+                  await canLaunch(data[index].url)
+                      ? await launch(data[index].url)
+                      : throw 'Could not launch ${data[index].url}';
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: () async {
-                    const url = 'https://youtu.be/SUVVvni4W6I';
-                    await canLaunch(url)
-                        ? await launch(url)
-                        : throw 'Could not launch $url';
-                  },
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Hero(
+                          tag: data[index].url,
+                          child: Icon(
+                            Icons.music_note_sharp,
+                            color: Color(0xFF3EB16F),
+                            size: 50.0,
+                          ),
+                        ),
+                        Hero(
+                            tag: data[index].title,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: Text(
+                                 
+                                data[index].title,
+                                softWrap: true,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color(0xFF3EB16F),
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ))
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),),
-          Container(
-         padding: EdgeInsets.fromLTRB(10,10,10,0),
-                    height: 100,
-                    width: double.maxFinite,
-          child: InkWell(
-            child: Card(
-              elevation: 5,
-              child: Center(
-                child: ListTile(
-                  leading: Icon(Icons.music_note,size: 40,color: Color(0xFF3EB16F),),
-                  title: Text(
-                    " RELAXING nature sound ",
-                    style: GoogleFonts.robotoSlab(fontSize: 15.0,color: Color(0xFF3EB16F))
-                    ,
-                  ),
-                  
-                  trailing: Icon(Icons.play_arrow,color: Color(0xFF3EB16F),),
-                  onTap: () async {
-                    const url = 'https://youtu.be/YCLnDcEP-1I';
-                    await canLaunch(url)
-                        ? await launch(url)
-                        : throw 'Could not launch $url';
-                  },
-                ),
-              ),
-            ),
-          ),
-          ),
-          Container(
-         padding: EdgeInsets.fromLTRB(10,10,10,0),
-                    height: 100,
-                    width: double.maxFinite,
-          child: InkWell(
-            child: Card(
-              elevation: 5,
-              child: Center(
-                child: ListTile(
-                  leading: Icon(Icons.music_note,size: 40,),
-                  title: Text(
-                    "Calm Your Anxiety",
-                    style: GoogleFonts.robotoSlab(fontSize: 15.0),
-                  ),
-                  trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: () async {
-                    const url = 'https://youtu.be/zPyg4N7bcHM';
-                    await canLaunch(url)
-                        ? await launch(url)
-                        : throw 'Could not launch $url';
-                  },
-                ),
-              ),
-            ),
-          ),
-          ),
-         Container(
-         padding: EdgeInsets.fromLTRB(10,10,10,0),
-                    height: 100,
-                    width: double.maxFinite,
-          child: InkWell(
-            child: Card(
-              elevation: 5,
-              child: Center(
-                child: ListTile(
-                  leading: Icon(Icons.music_note,size: 40,),
-                  title: Text(
-                    "Instant Relief from Stress and Anxiety ",
-                    style: GoogleFonts.robotoSlab(fontSize: 15.0),
-                  ),
-                  trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: () async {
-                    const url = 'https://youtu.be/79kpoGF8KWU';
-                    await canLaunch(url)
-                        ? await launch(url)
-                        : throw 'Could not launch $url';
-                  },
-                ),
-              ),
-            ),
-          ),
-         ),
-          Container(
-         padding: EdgeInsets.fromLTRB(10,10,10,0),
-                    height: 100,
-                    width: double.maxFinite,
-          child: InkWell(
-            child: Card(
-              elevation: 5,
-              child: Center(
-                child: ListTile(
-                  leading: Icon(Icons.music_note,size: 40,),
-                  title: Text(
-                    "Box breathing relaxation technique",
-                    style: GoogleFonts.robotoSlab(fontSize: 15.0),
-                  ),
-                  trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: () async {
-                    const url = 'https://youtu.be/tEmt1Znux58';
-                    await canLaunch(url)
-                        ? await launch(url)
-                        : throw 'Could not launch $url';
-                  },
-                ),
-              ),
-            ),
-          ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF3EB16F),
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
-        selectedFontSize: 14,
-        currentIndex: 0,
-        unselectedFontSize: 14,
-        onTap: (value) {
-          switch (value) {
-            case 0:
-              {
-                Navigator.pushNamed(context, '/SafetyPlan');
-              }
-              break;
-            case 1:
-              {
-                Navigator.pushNamed(context, '/Reminders');
-              }
-              break;
-            case 2:
-              {
-                Navigator.pushNamed(context, '/Resources');
-              }
-              break;
-            case 3:
-              {
-                Navigator.pushNamed(context, '/Music');
-              }
-              break;
-            default:
-              {
-                throw Error();
-              }
-              break;
-          }
-        },
-        items: [
-          BottomNavigationBarItem(
-            title: Text('Safety Plan'),
-            icon: Icon(Icons.favorite),
-          ),
-          BottomNavigationBarItem(
-            title: Text('Remainders'),
-            icon: Icon(Icons.notifications),
-          ),
-          BottomNavigationBarItem(
-            title: Text('Resources'),
-            icon: Icon(Icons.book),
-          ),
-          BottomNavigationBarItem(
-            title: Text('Music'),
-            icon: Icon(Icons.music_note),
-          ),
-        ],
-      ),
-      
     );
   }
 }

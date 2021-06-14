@@ -67,7 +67,7 @@ class _MyApp extends State<MyApp> {
               '/SafetyPlan': (context) => SafetyPlan(),
               '/Reminders': (context) => Reminders(),
               '/Resources': (context) => Resources(),
-              '/Music': (context) => Music(),
+              '/Music': (context) => MusicView(),
             },
             theme: ThemeData(
               primaryColor: Colors.greenAccent,

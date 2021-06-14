@@ -23,7 +23,7 @@ class MedicineDetails extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          "Mediminder Details",
+          "Medication Details",
           style: TextStyle(
             color: Colors.black,
             fontSize: 18,
@@ -59,7 +59,7 @@ class MedicineDetails extends StatelessWidget {
                     },
                     child: Center(
                       child: Text(
-                        "Delete Mediminder",
+                        "Delete Medication",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
@@ -99,7 +99,7 @@ class MedicineDetails extends StatelessWidget {
                     padding: EdgeInsets.all(18),
                     child: Center(
                       child: Text(
-                        "Delete this Mediminder?",
+                        "Delete this Medication?",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
@@ -114,7 +114,7 @@ class MedicineDetails extends StatelessWidget {
                           _globalBloc.removeMedicine(medicine);
                           Navigator.popUntil(
                             context,
-                            ModalRoute.withName('/'),
+                            ModalRoute.withName('/Remainders'),
                           );
                         },
                         child: InkWell(

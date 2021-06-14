@@ -107,7 +107,20 @@ class _AppointmentsState extends State<Appointments>
         children: [
           Align(
               alignment: Alignment.center,
-              child: Text("Oop's No Data here..!")),
+              child: Container(
+            color: Color(0xFFF6F8FC),
+            child: Center(
+              child: Text(
+                "Press + to add a Appointment",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 24,
+                    color: Color(0xFFC9C9C9),
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(

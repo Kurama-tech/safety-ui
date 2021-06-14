@@ -109,7 +109,6 @@ class SafetyPlan extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0xFF3EB16F),
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
         selectedFontSize: 14,
         currentIndex: 0,
         unselectedFontSize: 14,

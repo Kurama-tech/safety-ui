@@ -76,7 +76,7 @@ class TopContainer extends StatelessWidget {
               bottom: 10,
             ),
             child: Text(
-              "Mediminder",
+              "Medications",
               style: TextStyle(
                 fontFamily: "Angel",
                 fontSize: 64,
@@ -138,7 +138,7 @@ class BottomContainer extends StatelessWidget {
             color: Color(0xFFF6F8FC),
             child: Center(
               child: Text(
-                "Press + to add a Mediminder",
+                "Press + to add a Medication",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 24,

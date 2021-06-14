@@ -83,11 +83,11 @@ class MyHomePage extends StatelessWidget {
                   children: [
                     ListTile(
                       title: const Text(
-                        'Reminder',
+                        'Reminders',
                         style: TextStyle(fontSize: 20.0),
                       ),
                       subtitle: Text(
-                        'Manage your Medications and Appointments through Remainders.',
+                        'Manage your Medications and Appointments through Reminders.',
                         style: TextStyle(color: Colors.black.withOpacity(0.6)),
                       ),
                     ),
@@ -161,7 +161,7 @@ class MyHomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Music(),
+                    builder: (context) => MusicView(),
                   ),
                 );
               },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:safety/homepage/homepage.dart';
 import 'package:safety/view/Appointments.dart';
 import 'package:safety/view/Medications.dart';
 
@@ -47,7 +48,7 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
         controller: _tabController,
         children: [
           //Medication(title: 'Medications'),
-          Container(),
+          HomePage(),
           Appointments(
             title: 'Appointments',
           ),

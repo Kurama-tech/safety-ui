@@ -2,6 +2,7 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:safety/NotificationPlugin.dart';
 import 'package:safety/databaseHandler.dart';
 import 'package:safety/models/Models.dart';
 import 'package:safety/provider/Universal.dart';
@@ -33,6 +34,10 @@ class _AppointmentsState extends State<Appointments>
 
   TextEditingController _dateController = TextEditingController();
   TextEditingController _timeController = TextEditingController();
+
+  onNotificationInLowerVersions(ReceivedNotification receivedNotification) {}
+
+  onNotificationClick(String payload) {}
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -70,6 +75,9 @@ class _AppointmentsState extends State<Appointments>
   void initState() {
     // TODO: implement initState
     //final provider = Provider.of<AppointmentsP>(context, listen: false);
+    notificationPlugin
+        .setListenerForLowerVersions(onNotificationInLowerVersions);
+    notificationPlugin.setOnNotificationClick(onNotificationClick);
     final provider = Provider.of<AppointmentsP>(context, listen: false);
     _dateController.text = DateFormat.yMd().format(DateTime.now());
 
@@ -103,7 +111,8 @@ class _AppointmentsState extends State<Appointments>
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                //await notificationPlugin.scheduleNotification();
                 _showStepper(context, nextId, false);
               },
               child: Text('Add Appointments'),
@@ -177,6 +186,7 @@ class _AppointmentsState extends State<Appointments>
           await dbhelper
               .deleteUniversal(dbConnection, table, id)
               .then((value) async {
+            notificationPlugin.cancelNotification(id);
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text("Delete Successfull")));
 
@@ -350,7 +360,10 @@ class _AppointmentsState extends State<Appointments>
                       if (isEdit) {
                         await dbhelper
                             .updateAppointment(dbConnection, model)
-                            .then((value) {
+                            .then((value) async {
+                          await notificationPlugin
+                              .scheduleNotificationAppotintment(
+                                  id, dt, finaltext);
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content:
                                   Text("Appointment Edited Successfully")));
@@ -364,7 +377,10 @@ class _AppointmentsState extends State<Appointments>
                       } else {
                         await dbhelper
                             .insertAppointment(dbConnection, model)
-                            .then((value) {
+                            .then((value) async {
+                          await notificationPlugin
+                              .scheduleNotificationAppotintment(
+                                  id, dt,finaltext);
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("Appointment Added Successfully")));
                           dbhelper
@@ -372,7 +388,8 @@ class _AppointmentsState extends State<Appointments>
                               .then((value) {
                             print("value added:" + value.toString());
                             provider.setData(value);
-                            print("provider data noData status:" + provider.noData.toString());
+                            print("provider data noData status:" +
+                                provider.noData.toString());
                             print("value added:" + provider.flag.toString());
                             setState(() {
                               nextId = nextId + 1;

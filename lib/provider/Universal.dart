@@ -134,14 +134,15 @@ class ContactsP with ChangeNotifier {
 class AppointmentsP with ChangeNotifier {
   List<AppointmentsModel> data;
   bool flag = false;
-  bool noData = false;
+  bool noData = true;
   setData(dbData) {
     data = dbData;
     flag = true;
     print(dbData.length);
-    if (dbData.length < 1) {
+    if (dbData.length >= 1) {
+      noData = false;
+    } else {
       noData = true;
-      data = null;
       flag = false;
     }
     notifyListeners();

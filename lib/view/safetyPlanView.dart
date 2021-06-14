@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:safety/view/DetailsView.dart';
 
-
 class SafetyPlan extends StatelessWidget {
   Widget containerData(BuildContext context, IconData icon, String title,
       String subtitle, String table) {
@@ -33,19 +32,29 @@ class SafetyPlan extends StatelessWidget {
                   }
                   break;
                 case 'Coping':
-                  {description = 'i am in Coping';}
+                  {
+                    description = 'i am in Coping';
+                  }
                   break;
                 case 'Reasons':
-                  {description = 'i am in reasons';}
+                  {
+                    description = 'i am in reasons';
+                  }
                   break;
                 case 'Places':
-                  {description = 'i am in Places';}
+                  {
+                    description = 'i am in Places';
+                  }
                   break;
                 case 'Notes':
-                  {description = 'i am in Notes';}
+                  {
+                    description = 'i am in Notes';
+                  }
                   break;
                 case 'Contacts':
-                  {description = 'i am in Contacts';}
+                  {
+                    description = 'i am in Contacts';
+                  }
                   break;
                 default:
                   {
@@ -80,19 +89,78 @@ class SafetyPlan extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [new Image.asset("assets/images/4070-ai.png")]),
         containerData(context, Icons.warning, "Warning Signs",
-            "Tap the Card to add warning signs",'Warning'),
+            "Tap the Card to add warning signs", 'Warning'),
         containerData(context, Icons.music_note, "Coping Strategies",
-            "Tap the Card to add coping strategies",'Coping'),
+            "Tap the Card to add coping strategies", 'Coping'),
         containerData(context, Icons.wb_sunny, "Reasons to Live",
-            "Tap the Card to add things that are worth for living",'Reasons'),
+            "Tap the Card to add things that are worth for living", 'Reasons'),
         containerData(context, Icons.contact_phone, "Contacts",
-            "Tap the Card to add contacts",'Contacts'),
+            "Tap the Card to add contacts", 'Contacts'),
         containerData(context, Icons.place, "Places for Distraction",
-            "Tap the Card to add places that distract you",'Places'),
-        containerData(context, Icons.grid_on, "Other",
-            "Tap the Card to add any additionl notes that could helpful",'Notes'),
+            "Tap the Card to add places that distract you", 'Places'),
+        containerData(
+            context,
+            Icons.grid_on,
+            "Other",
+            "Tap the Card to add any additionl notes that could helpful",
+            'Notes'),
         //containerData(icon, title, subtitle)
       ]),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF3EB16F),
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.white,
+        selectedFontSize: 14,
+        currentIndex: 0,
+        unselectedFontSize: 14,
+        onTap: (value) {
+          switch (value) {
+            case 0:
+              {
+                Navigator.pushNamed(context, '/SafetyPlan');
+              }
+              break;
+            case 1:
+              {
+                Navigator.pushNamed(context, '/Reminders');
+              }
+              break;
+            case 2:
+              {
+                Navigator.pushNamed(context, '/Resources');
+              }
+              break;
+            case 3:
+              {
+                Navigator.pushNamed(context, '/Resources');
+              }
+              break;
+            default:
+              {
+                throw Error();
+              }
+              break;
+          }
+        },
+        items: [
+          BottomNavigationBarItem(
+            title: Text('Safety Plan'),
+            icon: Icon(Icons.favorite),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Remainders'),
+            icon: Icon(Icons.notifications),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Resources'),
+            icon: Icon(Icons.book),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Music'),
+            icon: Icon(Icons.music_note),
+          ),
+        ],
+      ),
     );
   }
 }

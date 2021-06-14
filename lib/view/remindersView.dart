@@ -23,6 +23,7 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF6F8FC),
       appBar: AppBar(
         title: Text("Reminders"),
         shape: RoundedRectangleBorder(

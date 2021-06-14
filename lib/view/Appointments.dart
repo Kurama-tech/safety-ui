@@ -6,6 +6,7 @@ import 'package:safety/NotificationPlugin.dart';
 import 'package:safety/databaseHandler.dart';
 import 'package:safety/models/Models.dart';
 import 'package:safety/provider/Universal.dart';
+import 'package:safety/view/Appointments_entry.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Appointments extends StatefulWidget {
@@ -23,7 +24,6 @@ class _AppointmentsState extends State<Appointments>
   DatabaseHandler dbhelper = DatabaseHandler();
   Database dbConnection;
   int nextId = 0;
-
   String _hour, _minute, _time;
 
   String dateTime;
@@ -113,7 +113,24 @@ class _AppointmentsState extends State<Appointments>
             child: ElevatedButton(
               onPressed: () async {
                 //await notificationPlugin.scheduleNotification();
-                _showStepper(context, nextId, false);
+                //_showStepper(context, nextId, false);
+                Navigator.of(context).push(
+                  PageRouteBuilder<Null>(
+                    pageBuilder: (BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return AnimatedBuilder(
+                          animation: animation,
+                          builder: (BuildContext context, Widget child) {
+                            return Opacity(
+                              opacity: animation.value,
+                              child: ApponintmentsEntry(),
+                            );
+                          });
+                    },
+                    transitionDuration: Duration(milliseconds: 500),
+                  ),
+                );
               },
               child: Text('Add Appointments'),
             ),
@@ -139,23 +156,46 @@ class _AppointmentsState extends State<Appointments>
                   itemCount: provider.data.length,
                   itemBuilder: (context, i) {
                     final datalist = provider.data[i];
-                    return Container(
-                      height: 100,
+                    return Padding(
+                      padding: EdgeInsets.all(10.0),
                       child: InkWell(
-                        child: Card(
-                          elevation: 5,
+                        highlightColor: Colors.white,
+                        splashColor: Colors.grey,
+                        child: Container(
+                          height: 70,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                           child: Center(
-                            child: ListTile(
-                              leading: Text(datalist.id.toString()),
-                              title: Text(datalist.docName),
-                              subtitle: Text(datalist.dateTime),
-                              trailing: IconButton(
-                                icon: Icon(Icons.edit),
-                                onPressed: () async {
-                                  await _showStepper(
-                                      context, datalist.id, true, datalist);
-                                },
-                              ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Hero(
+                                  tag: datalist.docName,
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: Text(
+                                      
+                                      "Dr "+datalist.docName,
+                                      style: TextStyle(
+                                          
+                                          fontSize: 22,
+                                          color: Color(0xFF3EB16F),
+                                          fontWeight: FontWeight.w500),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10,),
+                                 Text(
+                                      parsedDatetime(datalist.dateTime),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Color(0xFFC9C9C9),
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                              ],
                             ),
                           ),
                         ),
@@ -167,7 +207,24 @@ class _AppointmentsState extends State<Appointments>
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
                   onPressed: () async {
-                    await _showStepper(context, nextId, false);
+                    //await _showStepper(context, nextId, false);
+                    Navigator.of(context).push(
+                      PageRouteBuilder<Null>(
+                        pageBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation) {
+                          return AnimatedBuilder(
+                              animation: animation,
+                              builder: (BuildContext context, Widget child) {
+                                return Opacity(
+                                  opacity: animation.value,
+                                  child: ApponintmentsEntry(),
+                                );
+                              });
+                        },
+                        transitionDuration: Duration(milliseconds: 500),
+                      ),
+                    );
                   },
                   child: Text('Add Appointments'),
                 ),
@@ -202,6 +259,16 @@ class _AppointmentsState extends State<Appointments>
       );
     }
     return null;
+  }
+
+  String parsedDatetime(String date) {
+    var parsedDate = DateTime.parse(date);
+    var pdate = DateFormat.yMd().format(parsedDate);
+    var ptime = formatDate(
+        DateTime(2019, 08, 1, parsedDate.hour, parsedDate.minute),
+        [hh, ':', nn, " ", am]).toString();
+    String finalParsed = "on " + pdate + " at " + ptime;
+    return finalParsed;
   }
 
   Future<void> _showStepper(BuildContext context, int id, bool isEdit,
@@ -252,13 +319,6 @@ class _AppointmentsState extends State<Appointments>
                         ),
                         Column(
                           children: <Widget>[
-                            Text(
-                              'Choose Date',
-                              style: TextStyle(
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 0.5),
-                            ),
                             InkWell(
                               onTap: () {
                                 _selectDate(context);
@@ -268,10 +328,13 @@ class _AppointmentsState extends State<Appointments>
                                 height: _height / 9,
                                 margin: EdgeInsets.only(top: 30),
                                 alignment: Alignment.center,
-                                decoration:
-                                    BoxDecoration(color: Colors.grey[200]),
+                                decoration: BoxDecoration(
+                                    color: Color(0xFF3EB16F),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20))),
                                 child: TextFormField(
-                                  style: TextStyle(fontSize: 40),
+                                  style: TextStyle(
+                                      fontSize: 40, color: Colors.white),
                                   textAlign: TextAlign.center,
                                   enabled: false,
                                   keyboardType: TextInputType.text,
@@ -289,8 +352,7 @@ class _AppointmentsState extends State<Appointments>
                                       disabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide.none),
                                       // labelText: 'Time',
-                                      contentPadding:
-                                          EdgeInsets.only(top: 0.0)),
+                                      contentPadding: EdgeInsets.all(5)),
                                 ),
                               ),
                             ),
@@ -298,13 +360,6 @@ class _AppointmentsState extends State<Appointments>
                         ),
                         Column(
                           children: <Widget>[
-                            Text(
-                              'Choose Time',
-                              style: TextStyle(
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 0.5),
-                            ),
                             InkWell(
                               onTap: () {
                                 _selectTime(context);
@@ -314,10 +369,13 @@ class _AppointmentsState extends State<Appointments>
                                 width: _width / 1.7,
                                 height: _height / 9,
                                 alignment: Alignment.center,
-                                decoration:
-                                    BoxDecoration(color: Colors.grey[200]),
+                                decoration: BoxDecoration(
+                                    color: Color(0xFF3EB16F),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20))),
                                 child: TextFormField(
-                                  style: TextStyle(fontSize: 40),
+                                  style: TextStyle(
+                                      fontSize: 40, color: Colors.white),
                                   textAlign: TextAlign.center,
                                   onSaved: (String val) {
                                     _setTime = val;
@@ -380,7 +438,7 @@ class _AppointmentsState extends State<Appointments>
                             .then((value) async {
                           await notificationPlugin
                               .scheduleNotificationAppotintment(
-                                  id, dt,finaltext);
+                                  id, dt, finaltext);
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("Appointment Added Successfully")));
                           dbhelper

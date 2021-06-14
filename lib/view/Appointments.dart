@@ -199,7 +199,10 @@ class _AppointmentsState extends State<Appointments>
                             ),
                           ),
                         ),
-                        onTap: () {},
+                        onTap: () async {
+                           await _showStepper(
+                                      context, datalist.id, true, datalist);
+                        },
                       ),
                     );
                   }),

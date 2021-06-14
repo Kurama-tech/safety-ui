@@ -7,6 +7,7 @@ import 'package:safety/provider/Universal.dart';
 import 'package:safety/provider/counter.dart';
 
 import 'package:safety/view/homeView.dart';
+import 'package:safety/view/musicView.dart';
 import 'package:safety/view/remindersView.dart';
 import 'package:safety/view/resourcesView.dart';
 import 'package:safety/view/safetyPlanView.dart';
@@ -66,6 +67,7 @@ class _MyApp extends State<MyApp> {
               '/SafetyPlan': (context) => SafetyPlan(),
               '/Reminders': (context) => Reminders(),
               '/Resources': (context) => Resources(),
+              '/Music': (context) => Music(),
             },
             theme: ThemeData(
               primaryColor: Colors.greenAccent,

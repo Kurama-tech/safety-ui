@@ -132,7 +132,7 @@ class SafetyPlan extends StatelessWidget {
               break;
             case 3:
               {
-                Navigator.pushNamed(context, '/Resources');
+                Navigator.pushNamed(context, '/Music');
               }
               break;
             default:

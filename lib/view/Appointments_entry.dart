@@ -21,7 +21,7 @@ class ApponintmentsEntry extends StatefulWidget {
 class _AppointmentsEntry extends State<ApponintmentsEntry>
     with SingleTickerProviderStateMixin {
   String _setTime, _setDate;
-
+  final _formKey = GlobalKey<FormState>();
   DatabaseHandler dbhelper = DatabaseHandler();
   Database dbConnection;
   int nextId = 0;
@@ -79,6 +79,7 @@ class _AppointmentsEntry extends State<ApponintmentsEntry>
 
   @override
   void initState() {
+    
     _scaffoldKey = GlobalKey<ScaffoldState>();
     notificationPlugin
         .setListenerForLowerVersions(onNotificationInLowerVersions);
@@ -105,7 +106,7 @@ class _AppointmentsEntry extends State<ApponintmentsEntry>
   @override
   Widget build(BuildContext context) {
     TextEditingController _statergyTextCtrl = TextEditingController();
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    
     final provider = Provider.of<AppointmentsP>(context, listen: false);
     // TODO: implement build
     return Scaffold(
@@ -147,7 +148,6 @@ class _AppointmentsEntry extends State<ApponintmentsEntry>
                       fontSize: 16,
                     ),
                     controller: _statergyTextCtrl,
-                    textCapitalization: TextCapitalization.words,
                     decoration: InputDecoration(
                       border: UnderlineInputBorder(),
                     ),

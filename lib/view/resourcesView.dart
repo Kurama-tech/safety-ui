@@ -48,12 +48,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
         controller: _tabController,
         children: <Widget>[
           
-          Container(
-            child:SingleChildScrollView(
-            child: Card(
-              elevation: 5,
-              clipBehavior: Clip.antiAlias,
-              child: Column(children: [
+            Column(children: [
                 ListTile(
                   //leading: Icon(Icons.label_important),
                   title: const Text(
@@ -88,8 +83,8 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                   child: Text("Chat with National Suicide Prevention Lifeline"),
                 ),
                 Divider(),
-                Card(
-                  child: Column(children: [
+                
+                 Column(children: [
                     ListTile(
                       //leading: Icon(Icons.label_important),
                       title: const Text(
@@ -116,10 +111,8 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                       child: Text("Criss Text line Website"),
                     ),
                   ]),
-                ),
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(children: [
+                  Divider(),
+                 Column(children: [
                     ListTile(
                       //leading: Icon(Icons.label_important),
                       title: const Text(
@@ -146,19 +139,14 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                       child: Text("Call SAMHSA's Helpline"),
                     ),
                   ]),
-                ),
+                
               ]),
-            ),
-          ),),
-          
-          
-          Container(
-            child:SingleChildScrollView(
             
-            child: Card(
-              
-              clipBehavior: Clip.antiAlias,
-              child: Column(children: [
+          
+          
+          
+          SingleChildScrollView(
+            child: Column(children: [
                 ListTile(
                   //leading: Icon(Icons.label_important),
                   title: const Text(
@@ -182,9 +170,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                   child: Text("Find a VA"),
                 ),
                 Divider(),
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(children: [
+                 Column(children: [
                     ListTile(
                       //leading: Icon(Icons.label_important),
                       title: const Text(
@@ -211,10 +197,8 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                       child: Text("Find a VET Center"),
                     ),
                   ]),
-                ),
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(children: [
+                Divider(),
+                 Column(children: [
                     ListTile(
                       //leading: Icon(Icons.label_important),
                       title: const Text(
@@ -255,10 +239,8 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                       child: Text("Visit VA Caregiver Support website"),
                     ),
                   ]),
-                ),
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(children: [
+                Divider(),
+                 Column(children: [
                     ListTile(
                       //leading: Icon(Icons.label_important),
                       title: const Text(
@@ -285,11 +267,11 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                       child: Text("Call Wvcc"),
                     ),
                   ]),
-                ),
+                
               ]),
             ),
-          ),
-          ),
+          
+          
         ],
       ),
     );

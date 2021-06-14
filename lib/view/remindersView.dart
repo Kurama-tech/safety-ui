@@ -26,6 +26,16 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
       backgroundColor: Color(0xFFF6F8FC),
       appBar: AppBar(
         title: Text("Reminders"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName('/'),
+                );
+              })
+        ],
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
             side: BorderSide(width: 2, color: Colors.white)),
@@ -56,16 +66,17 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF3EB16F),
+        backgroundColor: Colors.greenAccent,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.white,
+        currentIndex: 1,
         selectedFontSize: 14,
-        currentIndex: 0,
         unselectedFontSize: 14,
         onTap: (value) {
           switch (value) {
             case 0:
               {
+                
                 Navigator.pushNamed(context, '/SafetyPlan');
               }
               break;

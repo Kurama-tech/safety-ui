@@ -268,7 +268,7 @@ class _PlanningState extends State<PlanningDetail>
       [UnversalModel data]) async {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     TextEditingController _statergyTextCtrl = TextEditingController();
-    String addorEdit = 'Add';
+    String addorEdit = 'Add ';
     if (isEditMode && data != null) {
       addorEdit = 'Edit ';
       _statergyTextCtrl.text = data.statergy;
@@ -478,7 +478,7 @@ class _PlanningState extends State<PlanningDetail>
                         validator: (String value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter some text';
-                          } else if (value.length > 12 || value.length < 12) {
+                          } else if (value.length > 10 || value.length < 10) {
                             return 'Not a Valid Number';
                           }
                           return null;

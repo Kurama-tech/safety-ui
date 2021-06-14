@@ -123,31 +123,45 @@ class _AppointmentsState extends State<Appointments>
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: ElevatedButton(
-              onPressed: () async {
-                //await notificationPlugin.scheduleNotification();
-                //_showStepper(context, nextId, false);
-                Navigator.of(context).push(
-                  PageRouteBuilder<Null>(
-                    pageBuilder: (BuildContext context,
-                        Animation<double> animation,
-                        Animation<double> secondaryAnimation) {
-                      return AnimatedBuilder(
-                          animation: animation,
-                          builder: (BuildContext context, Widget child) {
-                            return Opacity(
-                              opacity: animation.value,
-                              child: ApponintmentsEntry(),
-                            );
-                          });
-                    },
-                    transitionDuration: Duration(milliseconds: 500),
+            child:Container(
+                    height: 60,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0, bottom: 4),
+                      child: FlatButton(
+                        color: Color(0xFF3EB16F),
+                        shape: StadiumBorder(),
+                        onPressed: () {
+                          Navigator.of(context).push(
+                      PageRouteBuilder<Null>(
+                        pageBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation) {
+                          return AnimatedBuilder(
+                              animation: animation,
+                              builder: (BuildContext context, Widget child) {
+                                return Opacity(
+                                  opacity: animation.value,
+                                  child: ApponintmentsEntry(),
+                                );
+                              });
+                        },
+                        transitionDuration: Duration(milliseconds: 500),
+                      ),
+                    );
+                        },
+                        child: Center(
+                          child: Text(
+                            "Add + Appointment",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                );
-              },
-              
-              child: Text('Add Appointments'),
-            ),
           )
         ],
       );
@@ -220,12 +234,15 @@ class _AppointmentsState extends State<Appointments>
                       ),
                     );
                   }),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    //await _showStepper(context, nextId, false);
-                    Navigator.of(context).push(
+              Container(
+                    height: 60,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0, bottom: 4),
+                      child: FlatButton(
+                        color: Color(0xFF3EB16F),
+                        shape: StadiumBorder(),
+                        onPressed: () {
+                          Navigator.of(context).push(
                       PageRouteBuilder<Null>(
                         pageBuilder: (BuildContext context,
                             Animation<double> animation,
@@ -242,10 +259,20 @@ class _AppointmentsState extends State<Appointments>
                         transitionDuration: Duration(milliseconds: 500),
                       ),
                     );
-                  },
-                  child: Text('Add Appointments'),
-                ),
-              )
+                        },
+                        child: Center(
+                          child: Text(
+                            "Add + Appointment",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
             ]),
     );
   }

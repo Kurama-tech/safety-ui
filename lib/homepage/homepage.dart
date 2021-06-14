@@ -31,17 +31,34 @@ class _HomePageState extends State<HomePage> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
+            child: Container(
+                    height: 60,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0, bottom: 4),
+                      child: FlatButton(
+                        color: Color(0xFF3EB16F),
+                        shape: StadiumBorder(),
+                        onPressed: () {
+                          Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => NewEntry(),
                   ),
                 );
-              },
-              child: Text('Add Medicine Remainders'),
-            ),
+                        },
+                        child: Center(
+                          child: Text(
+                            "Add Medicine Remainders",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
           )
         ],
       ),

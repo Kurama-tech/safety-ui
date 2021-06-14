@@ -25,6 +25,16 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         title: Text("Resources"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName('/'),
+                );
+              })
+        ],
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
             side: BorderSide(width: 2, color: Colors.white)),
@@ -276,11 +286,11 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF3EB16F),
+        backgroundColor: Colors.greenAccent,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.white,
         selectedFontSize: 14,
-        currentIndex: 0,
+        currentIndex: 2,
         unselectedFontSize: 14,
         onTap: (value) {
           switch (value) {

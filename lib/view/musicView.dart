@@ -42,6 +42,16 @@ class _MusicView extends State<MusicView> {
       backgroundColor: Color(0xFFF6F8FC),
       appBar: AppBar(
         title: Text("Music"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName('/'),
+                );
+              })
+        ],
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
             side: BorderSide(width: 2, color: Colors.white)),
@@ -104,6 +114,61 @@ class _MusicView extends State<MusicView> {
             );
           },
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.greenAccent,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.white,
+        selectedFontSize: 14,
+        currentIndex: 3,
+        unselectedFontSize: 14,
+        onTap: (value) {
+          switch (value) {
+            case 0:
+              {
+                Navigator.pushNamed(context, '/SafetyPlan');
+              }
+              break;
+            case 1:
+              {
+                Navigator.pushNamed(context, '/Reminders');
+              }
+              break;
+            case 2:
+              {
+                Navigator.pushNamed(context, '/Resources');
+              }
+              break;
+            case 3:
+              {
+                Navigator.pushNamed(context, '/Music');
+              }
+              break;
+            default:
+              {
+                throw Error();
+              }
+              break;
+          }
+        },
+        items: [
+          BottomNavigationBarItem(
+            title: Text('Safety Plan'),
+            icon: Icon(Icons.favorite),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Remainders'),
+            icon: Icon(Icons.notifications),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Resources'),
+            icon: Icon(Icons.book),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Music'),
+            icon: Icon(Icons.music_note),
+          ),
+        ],
       ),
     );
   }

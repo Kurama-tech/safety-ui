@@ -80,6 +80,16 @@ class SafetyPlan extends StatelessWidget {
     return new Scaffold(
       appBar: AppBar(
         title: Text("Safety Plan"),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName('/'),
+                );
+              })
+        ],
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
             side: BorderSide(width: 2, color: Colors.white)),
@@ -107,8 +117,9 @@ class SafetyPlan extends StatelessWidget {
         //containerData(icon, title, subtitle)
       ]),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xFF3EB16F),
+        backgroundColor: Colors.greenAccent,
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.white,
         selectedFontSize: 14,
         currentIndex: 0,
         unselectedFontSize: 14,

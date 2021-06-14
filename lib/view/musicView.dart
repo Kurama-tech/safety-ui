@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -6,6 +7,7 @@ class Music extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      
       appBar: AppBar(
         title: Text("Music"),
         shape: RoundedRectangleBorder(
@@ -48,12 +50,14 @@ class Music extends StatelessWidget {
               elevation: 5,
               child: Center(
                 child: ListTile(
-                  leading: Icon(Icons.videocam,size: 40,),
+                  leading: Icon(Icons.music_note,size: 40,color: Color(0xFF3EB16F),),
                   title: Text(
                     " RELAXING nature sound ",
-                    style: GoogleFonts.robotoSlab(fontSize: 15.0),
+                    style: GoogleFonts.robotoSlab(fontSize: 15.0,color: Color(0xFF3EB16F))
+                    ,
                   ),
-                  trailing: Icon(Icons.keyboard_arrow_right),
+                  
+                  trailing: Icon(Icons.play_arrow,color: Color(0xFF3EB16F),),
                   onTap: () async {
                     const url = 'https://youtu.be/YCLnDcEP-1I';
                     await canLaunch(url)
@@ -74,7 +78,7 @@ class Music extends StatelessWidget {
               elevation: 5,
               child: Center(
                 child: ListTile(
-                  leading: Icon(Icons.videocam,size: 40,),
+                  leading: Icon(Icons.music_note,size: 40,),
                   title: Text(
                     "Calm Your Anxiety",
                     style: GoogleFonts.robotoSlab(fontSize: 15.0),
@@ -100,7 +104,7 @@ class Music extends StatelessWidget {
               elevation: 5,
               child: Center(
                 child: ListTile(
-                  leading: Icon(Icons.videocam,size: 40,),
+                  leading: Icon(Icons.music_note,size: 40,),
                   title: Text(
                     "Instant Relief from Stress and Anxiety ",
                     style: GoogleFonts.robotoSlab(fontSize: 15.0),
@@ -126,7 +130,7 @@ class Music extends StatelessWidget {
               elevation: 5,
               child: Center(
                 child: ListTile(
-                  leading: Icon(Icons.videocam,size: 40,),
+                  leading: Icon(Icons.music_note,size: 40,),
                   title: Text(
                     "Box breathing relaxation technique",
                     style: GoogleFonts.robotoSlab(fontSize: 15.0),
@@ -142,6 +146,61 @@ class Music extends StatelessWidget {
               ),
             ),
           ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xFF3EB16F),
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.white,
+        selectedFontSize: 14,
+        currentIndex: 0,
+        unselectedFontSize: 14,
+        onTap: (value) {
+          switch (value) {
+            case 0:
+              {
+                Navigator.pushNamed(context, '/SafetyPlan');
+              }
+              break;
+            case 1:
+              {
+                Navigator.pushNamed(context, '/Reminders');
+              }
+              break;
+            case 2:
+              {
+                Navigator.pushNamed(context, '/Resources');
+              }
+              break;
+            case 3:
+              {
+                Navigator.pushNamed(context, '/Music');
+              }
+              break;
+            default:
+              {
+                throw Error();
+              }
+              break;
+          }
+        },
+        items: [
+          BottomNavigationBarItem(
+            title: Text('Safety Plan'),
+            icon: Icon(Icons.favorite),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Remainders'),
+            icon: Icon(Icons.notifications),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Resources'),
+            icon: Icon(Icons.book),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Music'),
+            icon: Icon(Icons.music_note),
           ),
         ],
       ),

@@ -17,7 +17,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
       () {
         Navigator.popUntil(
           context,
-          ModalRoute.withName('/Reminders'),
+          ModalRoute.withName('/'),
         );
       },
     );

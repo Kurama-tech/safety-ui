@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io' show File, Platform;
 import 'package:http/http.dart' as http;
 import 'package:rxdart/streams.dart';
 import 'package:rxdart/subjects.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationPlugin {
   //
@@ -18,6 +21,7 @@ class NotificationPlugin {
   }
   init() async {
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    tz.initializeTimeZones();
     if (Platform.isIOS) {
       _requestIOSPermission();
     }
@@ -38,7 +42,7 @@ class NotificationPlugin {
       },
     );
     initializationSettings = InitializationSettings(
-        initializationSettingsAndroid, initializationSettingsIOS);
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
   }
 
   _requestIOSPermission() {
@@ -69,15 +73,15 @@ class NotificationPlugin {
       'CHANNEL_ID',
       'CHANNEL_NAME',
       "CHANNEL_DESCRIPTION",
-      importance: Importance.Max,
-      priority: Priority.High,
+      importance: Importance.max,
+      priority: Priority.high,
       playSound: true,
       timeoutAfter: 5000,
       styleInformation: DefaultStyleInformation(true, true),
     );
     var iosChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics =
-        NotificationDetails(androidChannelSpecifics, iosChannelSpecifics);
+        NotificationDetails(android : androidChannelSpecifics, iOS: iosChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
       0,
       'Test Title',
@@ -93,12 +97,12 @@ class NotificationPlugin {
       'CHANNEL_ID 4',
       'CHANNEL_NAME 4',
       "CHANNEL_DESCRIPTION 4",
-      importance: Importance.Max,
-      priority: Priority.High,
+      importance: Importance.max,
+      priority: Priority.high,
     );
     var iosChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics =
-        NotificationDetails(androidChannelSpecifics, iosChannelSpecifics);
+        NotificationDetails(android: androidChannelSpecifics, iOS: iosChannelSpecifics);
     await flutterLocalNotificationsPlugin.showDailyAtTime(
       0,
       'Test Title at ${time.hour}:${time.minute}.${time.second}',
@@ -115,17 +119,17 @@ class NotificationPlugin {
       'CHANNEL_ID 5',
       'CHANNEL_NAME 5',
       "CHANNEL_DESCRIPTION 5",
-      importance: Importance.Max,
-      priority: Priority.High,
+      importance: Importance.max,
+      priority: Priority.high,
     );
     var iosChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics =
-        NotificationDetails(androidChannelSpecifics, iosChannelSpecifics);
+        NotificationDetails(android: androidChannelSpecifics, iOS: iosChannelSpecifics);
     await flutterLocalNotificationsPlugin.showWeeklyAtDayAndTime(
       0,
       'Test Title at ${time.hour}:${time.minute}.${time.second}',
       'Test Body', //null
-      Day.Saturday,
+      Day.saturday,
       time,
       platformChannelSpecifics,
       payload: 'Test Payload',
@@ -137,18 +141,18 @@ class NotificationPlugin {
       'CHANNEL_ID 3',
       'CHANNEL_NAME 3',
       "CHANNEL_DESCRIPTION 3",
-      importance: Importance.Max,
-      priority: Priority.High,
+      importance: Importance.max,
+      priority: Priority.high,
       styleInformation: DefaultStyleInformation(true, true),
     );
     var iosChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics =
-        NotificationDetails(androidChannelSpecifics, iosChannelSpecifics);
+        NotificationDetails(android: androidChannelSpecifics, iOS: iosChannelSpecifics);
     await flutterLocalNotificationsPlugin.periodicallyShow(
       0,
       'Repeating Test Title',
       'Repeating Test Body',
-      RepeatInterval.EveryMinute,
+      RepeatInterval.everyMinute,
       platformChannelSpecifics,
       payload: 'Test Payload',
     );
@@ -168,8 +172,8 @@ class NotificationPlugin {
       ledColor: const Color.fromARGB(255, 255, 0, 0),
       ledOnMs: 1000,
       ledOffMs: 500,
-      importance: Importance.Max,
-      priority: Priority.High,
+      importance: Importance.max,
+      priority: Priority.high,
       playSound: true,
       timeoutAfter: 5000,
       styleInformation: DefaultStyleInformation(true, true),
@@ -178,8 +182,8 @@ class NotificationPlugin {
         // sound: 'my_sound.aiff',
         );
     var platformChannelSpecifics = NotificationDetails(
-      androidChannelSpecifics,
-      iosChannelSpecifics,
+      android: androidChannelSpecifics,
+      iOS:iosChannelSpecifics,
     );
     await flutterLocalNotificationsPlugin.schedule(
       0,
@@ -201,30 +205,33 @@ class NotificationPlugin {
       ledColor: const Color.fromARGB(255, 255, 0, 0),
       ledOnMs: 1000,
       ledOffMs: 500,
-      importance: Importance.Max,
-      priority: Priority.High,
+      importance: Importance.max,
+      priority: Priority.high,
       playSound: true,
       styleInformation: DefaultStyleInformation(true, true),
     );
   }
 
   Future<void> scheduleNotificationAppotintment(int id, DateTime when, String doctorNAme) async {
+    final String currentTimeZone = await FlutterNativeTimezone.getLocalTimezone();
     var scheduleNotificationDateTime = when;
     var androidChannelSpecifics = getAndroidNotificationDetails('1');
     var iosChannelSpecifics = IOSNotificationDetails(badgeNumber: 1);
     var platformChannelSpecifics = NotificationDetails(
-      androidChannelSpecifics,
-      iosChannelSpecifics,
+      android: androidChannelSpecifics,
+      iOS:iosChannelSpecifics,
     );
+    tz.setLocalLocation(tz.getLocation(currentTimeZone)); 
 
-    await flutterLocalNotificationsPlugin.schedule(
+    await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       'Appointment Remainder!',
       'Appointment with doctor $doctorNAme at ${when.hour}:${when.minute}',
-      scheduleNotificationDateTime.subtract(Duration(hours: 1)),
+      tz.TZDateTime.from(scheduleNotificationDateTime.subtract(Duration(hours: 1)), tz.local),
       platformChannelSpecifics,
       androidAllowWhileIdle: true,
-      payload: 'Appointment with doctor $doctorNAme at ${when.hour}:${when.minute}',
+      payload: 'Appointment with doctor $doctorNAme at ${when.hour}:${when.minute}', 
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
@@ -245,12 +252,12 @@ class NotificationPlugin {
       'CHANNEL ID 2',
       'CHANNEL NAME 2',
       'CHANNEL DESCRIPTION 2',
-      importance: Importance.High,
-      priority: Priority.High,
+      importance: Importance.high,
+      priority: Priority.high,
       styleInformation: bigPictureStyleInformation,
     );
     var notificationDetails =
-        NotificationDetails(androidChannelSpecifics, iOSPlatformSpecifics);
+        NotificationDetails(android: androidChannelSpecifics, iOS:iOSPlatformSpecifics);
     await flutterLocalNotificationsPlugin.show(
       0,
       'Title with attachment',

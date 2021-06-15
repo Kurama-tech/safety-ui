@@ -10,6 +10,8 @@ import 'package:safety/models/medicine.dart';
 import 'package:safety/models/medicine_type.dart';
 import 'package:safety/new_entry/new_entry_bloc.dart';
 import 'package:safety/success_screen/success_screen.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class NewEntry extends StatefulWidget {
   @override
@@ -33,6 +35,7 @@ class _NewEntryState extends State<NewEntry> {
 
   void initState() {
     super.initState();
+    tz.initializeTimeZones();
     _newEntryBloc = NewEntryBloc();
     nameController = TextEditingController();
     dosageController = TextEditingController();
@@ -314,7 +317,7 @@ class _NewEntryState extends State<NewEntry> {
         AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettingsIOS = IOSInitializationSettings();
     var initializationSettings = InitializationSettings(
-        initializationSettingsAndroid, initializationSettingsIOS);
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: onSelectNotification);
   }
@@ -338,7 +341,7 @@ class _NewEntryState extends State<NewEntry> {
       'repeatDailyAtTime channel id',
       'repeatDailyAtTime channel name',
       'repeatDailyAtTime description',
-      importance: Importance.Max,
+      importance: Importance.max,
       ledColor: Color(0xFF3EB16F),
       ledOffMs: 1000,
       ledOnMs: 1000,
@@ -346,7 +349,7 @@ class _NewEntryState extends State<NewEntry> {
     );
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
-        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+        android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
 
     for (int i = 0; i < (24 / medicine.interval).floor(); i++) {
       if ((hour + (medicine.interval * i) > 23)) {

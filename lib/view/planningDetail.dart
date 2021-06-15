@@ -187,22 +187,33 @@ class _PlanningState extends State<PlanningDetail>
         itemBuilder: (context, i) {
           final datalist = universalData.data[i];
           return Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
             padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
             height: 100,
             width: double.maxFinite,
             child: InkWell(
-              splashColor: Colors.greenAccent,
+              highlightColor: Colors.white,
+              splashColor: Colors.grey,
               child: Card(
                 elevation: 5,
                 child: Center(
                   child: ListTile(
-                    leading: Icon(
-                      Icons.label_important,
-                      color: Colors.cyan[900],
-                    ),
+                    leading: Hero(
+                      tag: datalist.id,
+                      child: Icon(
+                      Icons.star,
+                      color: Color(0xFF3EB16F),
+                      size: 40,
+                    )),
                     title: Text(
                       datalist.statergy,
-                      style: GoogleFonts.lora(),
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Color(0xFF3EB16F),
+                          fontWeight: FontWeight.w400),
                     ),
                     trailing: Wrap(
                       spacing: 8,
@@ -219,7 +230,10 @@ class _PlanningState extends State<PlanningDetail>
                         ),
                         IconButton(
                             icon: Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {}),
+                            onPressed: () {
+                              delete(context, this.widget.table, datalist.id,
+                                  false);
+                            }),
                       ],
                     ),
                   ),
@@ -238,15 +252,41 @@ class _PlanningState extends State<PlanningDetail>
         itemBuilder: (context, i) {
           final datalist = universalData.data[i];
           return Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
             height: 100,
             child: InkWell(
+              highlightColor: Colors.white,
+              splashColor: Colors.grey,
               child: Card(
+                color: Colors.white,
                 elevation: 5,
                 child: Center(
                   child: ListTile(
-                    leading: Text(datalist.id.toString()),
-                    title: Text(datalist.name),
-                    subtitle: Text(datalist.number.toString()),
+                    leading: Hero(
+                      tag: datalist.id,
+                      child: Icon(
+                        Icons.contact_phone,
+                        color: Color(0xFF3EB16F),
+                        size: 50,
+                      ),
+                    ),
+                    title: Text(
+                      datalist.name,
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: Color(0xFF3EB16F),
+                          fontWeight: FontWeight.w500),
+                    ),
+                    subtitle: Text(
+                      datalist.number.toString(),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFFC9C9C9),
+                          fontWeight: FontWeight.w400),
+                    ),
                     trailing: IconButton(
                       icon: Icon(Icons.edit),
                       onPressed: () {
@@ -268,22 +308,108 @@ class _PlanningState extends State<PlanningDetail>
       [UnversalModel data]) async {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     TextEditingController _statergyTextCtrl = TextEditingController();
+    //_statergyTextCtrl.text = '';
     String addorEdit = 'Add ';
     if (isEditMode && data != null) {
       addorEdit = 'Edit ';
       _statergyTextCtrl.text = data.statergy;
     }
 
-    return showDialog<void>(
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(addorEdit + title),
+        content: SingleChildScrollView(
+            child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextFormField(
+                controller: _statergyTextCtrl,
+                decoration: InputDecoration(
+                  hintText: 'Enter ' + title,
+                ),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+              ),
+            ],
+          ),
+        )),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+            child: const Text('Cancel', style: TextStyle(color: Colors.red)),
+          ),
+          TextButton(
+            child: Text(addorEdit + title,
+                style: TextStyle(color: (Colors.cyan[900]))),
+            onPressed: () async {
+              try {
+                if (_formKey.currentState.validate()) {
+                  var finaltext = _statergyTextCtrl.text;
+                  final dataProvider = getPerfectProvider(widget.table, false);
+                  UnversalModel model =
+                      UnversalModel(id: id, statergy: finaltext);
+                  if (isEditMode) {
+                    await dbhelper
+                        .updateUniversal(dbConnection, table, model)
+                        .then((value) async {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content:
+                              Text(title + " " + addorEdit + "Successfull")));
+                      await dbhelper
+                          .getListData(dbConnection, table)
+                          .then((value) {
+                        dataProvider.setData(value);
+                        Navigator.of(context).pop();
+                      });
+                    });
+                  } else {
+                    await dbhelper
+                        .insertUnversal(dbConnection, table, model)
+                        .then((value) async {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content:
+                              Text(title + " " + addorEdit + "Successfull")));
+                      await dbhelper
+                          .getListData(dbConnection, table)
+                          .then((value) {
+                        print(value.toString());
+                        print(value.length == 0);
+                        dataProvider.setData(value);
+                        setState(() {
+                          nextId = nextId + 1;
+                          Navigator.of(context).pop();
+                        });
+                      });
+                    });
+                  }
+                }
+              } catch (err) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(err.toString())));
+                throw new ErrorHint(err.toString());
+              }
+            },
+          ),
+          //deleteButtonWidget(context, isEditMode, table, id, false)
+        ],
+      ),
+    );
+
+    /* return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(addorEdit + title),
           content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Form(
+             child: Form(
                   key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -294,7 +420,7 @@ class _PlanningState extends State<PlanningDetail>
                           hintText: 'Enter ' + title,
                         ),
                         validator: (String value) {
-                          if (value == null || value.isEmpty) {
+                          if (value.isEmpty) {
                             return 'Please enter some text';
                           }
                           return null;
@@ -302,9 +428,9 @@ class _PlanningState extends State<PlanningDetail>
                       ),
                     ],
                   ),
-                )
-              ],
-            ),
+                ) 
+
+              
           ),
           actions: <Widget>[
             TextButton(
@@ -377,12 +503,47 @@ class _PlanningState extends State<PlanningDetail>
           ],
         );
       },
-    );
+    );*/
+  }
+
+  // ignore: missing_return
+  Future<void> delete(
+      BuildContext context, String table, int id, bool isContacts) {
+    final dataProvider = getPerfectProvider(table, false);
+    dbhelper.deleteUniversal(dbConnection, table, id).then((value) async {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Delete Successfull")));
+      if (isContacts) {
+        await dbhelper.getListDataContacts(dbConnection, table).then((value) {
+          print("delete : " + value.toString());
+
+          dataProvider.setData(value);
+          print("delete : " + dataProvider.toString());
+
+          nextId = nextId - 1;
+          if (nextId < 0) {
+            nextId = 0;
+          }
+
+          setState(() {});
+        });
+      } else {
+        await dbhelper.getListData(dbConnection, table).then((value) {
+          dataProvider.setData(value);
+          nextId = nextId - 1;
+          if (nextId < 0) {
+            nextId = 0;
+          }
+
+          setState(() {});
+        });
+      }
+    });
   }
 
   Widget deleteButtonWidget(BuildContext context, bool showDelete, String table,
       int id, bool isContacts) {
-    final dataProvider = getPerfectProvider(table, false);
+    // final dataProvider = getPerfectProvider(table, false);
     if (showDelete) {
       return IconButton(
         icon: Icon(
@@ -390,44 +551,12 @@ class _PlanningState extends State<PlanningDetail>
           color: Colors.red,
         ),
         onPressed: () async {
-          await dbhelper
-              .deleteUniversal(dbConnection, table, id)
-              .then((value) async {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text("Delete Successfull")));
-            if (isContacts) {
-              await dbhelper
-                  .getListDataContacts(dbConnection, table)
-                  .then((value) {
-                
-                print("delete : " + value.toString());
-                
-                dataProvider.setData(value);
-                print("delete : " + dataProvider.toString());
-                
-                nextId = nextId - 1;
-                if (nextId < 0) {
-                  nextId = 0;
-                }
-                Navigator.of(context).pop();
-                setState(() {});
-              });
-            } else {
-              await dbhelper.getListData(dbConnection, table).then((value) {
-                dataProvider.setData(value);
-                nextId = nextId - 1;
-                if (nextId < 0) {
-                  nextId = 0;
-                }
-                Navigator.of(context).pop();
-                setState(() {});
-              });
-            }
-          });
+          delete(context, table, id, isContacts);
+          Navigator.of(context).pop();
         },
       );
     }
-    return null;
+    return Text('');
   }
 
   Future<void> _showMyDialogContacts(

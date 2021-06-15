@@ -27,11 +27,16 @@ class _MusicView extends State<MusicView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    data.add(new MusicModel('https://youtu.be/SUVVvni4W6I', 'Meditation Music'));
-    data.add(new MusicModel('https://youtu.be/YCLnDcEP-1I', 'Relaxing nature sound'));
-    data.add(new MusicModel('https://youtu.be/zPyg4N7bcHM', 'Calm Your Anxiety'));
-    data.add(new MusicModel('https://youtu.be/79kpoGF8KWU', 'Relief from Stress'));
-    data.add(new MusicModel('https://youtu.be/tEmt1Znux58', 'Relaxation technique'));
+    data.add(
+        new MusicModel('https://youtu.be/SUVVvni4W6I', 'Meditation Music'));
+    data.add(new MusicModel(
+        'https://youtu.be/YCLnDcEP-1I', 'Relaxing nature sound'));
+    data.add(
+        new MusicModel('https://youtu.be/zPyg4N7bcHM', 'Calm Your Anxiety'));
+    data.add(
+        new MusicModel('https://youtu.be/79kpoGF8KWU', 'Relief from Stress'));
+    data.add(
+        new MusicModel('https://youtu.be/tEmt1Znux58', 'Relaxation technique'));
   }
 
   @override
@@ -70,9 +75,7 @@ class _MusicView extends State<MusicView> {
                 highlightColor: Colors.white,
                 splashColor: Colors.grey,
                 onTap: () async {
-                  await canLaunch(data[index].url)
-                      ? await launch(data[index].url)
-                      : throw 'Could not launch ${data[index].url}';
+                  await launch(data[index].url);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -96,7 +99,6 @@ class _MusicView extends State<MusicView> {
                             child: Material(
                               color: Colors.transparent,
                               child: Text(
-                                 
                                 data[index].title,
                                 softWrap: true,
                                 maxLines: 1,
@@ -153,19 +155,19 @@ class _MusicView extends State<MusicView> {
         },
         items: [
           BottomNavigationBarItem(
-            title: Text('Safety Plan'),
+            label: 'Safety Plan',
             icon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
-            title: Text('Remainders'),
+            label: 'Remainders',
             icon: Icon(Icons.notifications),
           ),
           BottomNavigationBarItem(
-            title: Text('Resources'),
+            label: 'Resources',
             icon: Icon(Icons.book),
           ),
           BottomNavigationBarItem(
-            title: Text('Music'),
+            label: 'Music',
             icon: Icon(Icons.music_note),
           ),
         ],

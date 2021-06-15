@@ -78,6 +78,7 @@ class SafetyPlan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      backgroundColor: Color(0xFFF6F8FC),
       appBar: AppBar(
         title: Text("Safety Plan"),
         actions: [
@@ -154,19 +155,19 @@ class SafetyPlan extends StatelessWidget {
         },
         items: [
           BottomNavigationBarItem(
-            title: Text('Safety Plan'),
+            label: 'Safety Plan',
             icon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
-            title: Text('Remainders'),
+            label: 'Remainders',
             icon: Icon(Icons.notifications),
           ),
           BottomNavigationBarItem(
-            title: Text('Resources'),
+            label: 'Resources',
             icon: Icon(Icons.book),
           ),
           BottomNavigationBarItem(
-            title: Text('Music'),
+            label: 'Music',
             icon: Icon(Icons.music_note),
           ),
         ],

@@ -323,19 +323,19 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
         },
         items: [
           BottomNavigationBarItem(
-            title: Text('Safety Plan'),
+            label: 'Safety Plan',
             icon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
-            title: Text('Remainders'),
+            label: 'Remainders',
             icon: Icon(Icons.notifications),
           ),
           BottomNavigationBarItem(
-            title: Text('Resources'),
+            label: 'Resources',
             icon: Icon(Icons.book),
           ),
           BottomNavigationBarItem(
-            title: Text('Music'),
+            label: 'Music',
             icon: Icon(Icons.music_note),
           ),
         ],

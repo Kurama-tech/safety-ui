@@ -144,7 +144,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                                       borderRadius:
                                           BorderRadius.circular(18)))),
                       onPressed: () {
-                        launch('18006624357');
+                        launch('tel:18006624357');
                       },
                       child: Text("Call SAMHSA's Helpline"),
                     ),

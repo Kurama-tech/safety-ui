@@ -114,7 +114,7 @@ class MedicineDetails extends StatelessWidget {
                           _globalBloc.removeMedicine(medicine);
                           Navigator.popUntil(
                             context,
-                            ModalRoute.withName('/Remainders'),
+                            ModalRoute.withName('/'),
                           );
                         },
                         child: InkWell(

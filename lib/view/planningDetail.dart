@@ -5,6 +5,7 @@ import 'package:safety/models/Models.dart';
 import 'package:safety/provider/Universal.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PlanningDetail extends StatefulWidget {
   PlanningDetail({Key key, this.title, this.description, this.table})
@@ -202,12 +203,12 @@ class _PlanningState extends State<PlanningDetail>
                 child: Center(
                   child: ListTile(
                     leading: Hero(
-                      tag: datalist.id,
-                      child: Icon(
-                      Icons.star,
-                      color: Color(0xFF3EB16F),
-                      size: 40,
-                    )),
+                        tag: datalist.id,
+                        child: Icon(
+                          Icons.star,
+                          color: Color(0xFF3EB16F),
+                          size: 40,
+                        )),
                     title: Text(
                       datalist.statergy,
                       style: TextStyle(
@@ -297,7 +298,9 @@ class _PlanningState extends State<PlanningDetail>
                   ),
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                launch('tel:' + datalist.number.toString());
+              },
             ),
           );
         });

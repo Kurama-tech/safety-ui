@@ -57,7 +57,8 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          SingleChildScrollView(
+          Padding(padding: EdgeInsets.all(10),
+          child:SingleChildScrollView(
             child:Column(children: [
                 ListTile(
                   //leading: Icon(Icons.label_important),
@@ -152,11 +153,11 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                 
               ]),
           ),
-            
+          ),
           
           
-          
-          SingleChildScrollView(
+          Padding(padding: EdgeInsets.all(10),
+         child: SingleChildScrollView(
             child: Column(children: [
                 ListTile(
                   //leading: Icon(Icons.label_important),
@@ -231,7 +232,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                                       borderRadius:
                                           BorderRadius.circular(18)))),
                       onPressed: () {
-                        launch('h18552603274');
+                        launch('tel:8552603274');
                       },
                       child: Text("Call VA Caregiver Support Line"),
                     ),
@@ -275,13 +276,27 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                       onPressed: () {
                         launch('https://www.va.gov/womenvet/');
                       },
+                      child: Text("Wvcc Website"),
+                    ),
+                     ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.cyan),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(18)))),
+                      onPressed: () {
+                        launch('tel:18558296636');
+                      },
                       child: Text("Call Wvcc"),
                     ),
                   ]),
                 
               ]),
-            ),
-          
+          ),
+          ),
           
         ],
       ),

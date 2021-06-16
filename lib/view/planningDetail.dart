@@ -288,7 +288,7 @@ class _PlanningState extends State<PlanningDetail>
                           fontWeight: FontWeight.w400),
                     ),
                     trailing: IconButton(
-                      icon: Icon(Icons.edit),
+                      icon: Icon(Icons.edit,color: Colors.cyan[900 ],),
                       onPressed: () {
                         _showMyDialogContacts(context, this.widget.title, true,
                             datalist.id, this.widget.table, datalist);
@@ -621,7 +621,7 @@ class _PlanningState extends State<PlanningDetail>
           ),
           actions: <Widget>[
             TextButton(
-              child: Text(addorEdit + title),
+              child: Text(addorEdit + title,style: TextStyle(color: Color(0xFF3EB16F)),),
               onPressed: () async {
                 try {
                   if (_formKey.currentState.validate()) {
@@ -676,7 +676,7 @@ class _PlanningState extends State<PlanningDetail>
               },
             ),
             TextButton(
-              child: Text('Cancel'),
+              child: Text('Cancel',style: TextStyle(color: Color(0xFF3EB16F)),),
               onPressed: () {
                 Navigator.of(context).pop();
               },

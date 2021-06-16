@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 3),
+        Duration(seconds: 2),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (BuildContext context) => MyHomePage())));
   }
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Image.asset('assets/images/splash.png',width: 200,height: 200,),
+        child: Image.asset('assets/images/splash.png',width: MediaQuery.of(context).size.width/2.5,height: MediaQuery.of(context).size.width/2.5,),
       ),
     );
   }

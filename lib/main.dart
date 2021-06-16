@@ -11,6 +11,7 @@ import 'package:safety/view/musicView.dart';
 import 'package:safety/view/remindersView.dart';
 import 'package:safety/view/resourcesView.dart';
 import 'package:safety/view/safetyPlanView.dart';
+import 'package:safety/view/splashView.dart';
 
 /// This is a reimplementation of the default Flutter application using provider + [ChangeNotifier].
 
@@ -61,7 +62,7 @@ class _MyApp extends State<MyApp> {
     return Provider<GlobalBloc>.value(
         value: globalBloc,
         child: MaterialApp(
-            home: MyHomePage(),
+            home: SplashScreen(),
             initialRoute: '/',
             routes: {
               '/SafetyPlan': (context) => SafetyPlan(),

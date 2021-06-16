@@ -112,11 +112,10 @@ class _PlanningState extends State<PlanningDetail>
     if (dataProvider.noData) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
               alignment: Alignment.center,
-              child: Image.asset("assets/images/3009286-ai.png")),
+              child: Image.asset("assets/images/3009286-ai.png", height: 300, width: 300,)),
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
@@ -320,7 +319,9 @@ class _PlanningState extends State<PlanningDetail>
 
     return showDialog<String>(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) => AlertDialog(
+        scrollable: true,
         title: Text(addorEdit + title),
         content: SingleChildScrollView(
             child: Form(

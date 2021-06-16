@@ -112,7 +112,7 @@ class _AppointmentsEntry extends State<ApponintmentsEntry>
     return Scaffold(
       key: _scaffoldKey,
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xFFF6F8FC),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(

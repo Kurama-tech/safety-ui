@@ -29,10 +29,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
           IconButton(
               icon: Icon(Icons.home),
               onPressed: () {
-                Navigator.popUntil(
-                  context,
-                  ModalRoute.withName('/'),
-                );
+                Navigator.of(context).popUntil((route) => route.isFirst);
               })
         ],
         shape: RoundedRectangleBorder(
@@ -73,7 +70,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.cyan),
+                      backgroundColor: MaterialStateProperty.all(Color(0xFF3EB16F)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18)))),
@@ -84,7 +81,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.cyan),
+                      backgroundColor: MaterialStateProperty.all(Color(0xFF3EB16F)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18)))),
@@ -110,7 +107,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan),
+                              MaterialStateProperty.all(Color(0xFF3EB16F)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -138,7 +135,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan),
+                              MaterialStateProperty.all(Color(0xFF3EB16F)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -172,7 +169,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.cyan),
+                      backgroundColor: MaterialStateProperty.all(Color(0xFF3EB16F)),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18)))),
@@ -197,7 +194,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan),
+                              MaterialStateProperty.all(Color(0xFF3EB16F)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -225,7 +222,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan),
+                              MaterialStateProperty.all(Color(0xFF3EB16F)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -239,7 +236,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan),
+                              MaterialStateProperty.all(Color(0xFF3EB16F)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -267,7 +264,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                     ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan),
+                              MaterialStateProperty.all(Color(0xFF3EB16F)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -281,7 +278,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                      ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.cyan),
+                              MaterialStateProperty.all(Color(0xFF3EB16F)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(

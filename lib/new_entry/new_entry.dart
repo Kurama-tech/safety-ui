@@ -530,7 +530,7 @@ class MedicineTypeColumn extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            width: 85,
+            width: 75,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: isSelected ? Color(0xFF3EB16F) : Colors.white,
@@ -540,7 +540,7 @@ class MedicineTypeColumn extends StatelessWidget {
                 padding: EdgeInsets.only(top: 14.0),
                 child: Icon(
                   IconData(iconValue, fontFamily: "Ic"),
-                  size: 75,
+                  size: 65,
                   color: isSelected ? Colors.white : Color(0xFF3EB16F),
                 ),
               ),
@@ -549,7 +549,7 @@ class MedicineTypeColumn extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: Container(
-              width: 80,
+              width: 70,
               height: 30,
               decoration: BoxDecoration(
                 color: isSelected ? Color(0xFF3EB16F) : Colors.transparent,

@@ -62,6 +62,7 @@ class _MyApp extends State<MyApp> {
     return Provider<GlobalBloc>.value(
         value: globalBloc,
         child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             home: SplashScreen(),
             initialRoute: '/',
             routes: {

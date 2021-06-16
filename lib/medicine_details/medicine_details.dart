@@ -112,10 +112,7 @@ class MedicineDetails extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           _globalBloc.removeMedicine(medicine);
-                          Navigator.popUntil(
-                            context,
-                            ModalRoute.withName('/'),
-                          );
+                          Navigator.of(context).popUntil((route) => route.isFirst);
                         },
                         child: InkWell(
                           child: Container(
@@ -235,7 +232,7 @@ class MainSection extends StatelessWidget {
     return Container(
       child: Row(
         children: <Widget>[
-          makeIcon(175),
+          makeIcon(160),
           SizedBox(
             width: 15,
           ),

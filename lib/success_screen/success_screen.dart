@@ -15,10 +15,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
     Timer(
       Duration(milliseconds: 2200),
       () {
-        Navigator.popUntil(
-          context,
-          ModalRoute.withName('/'),
-        );
+        Navigator.of(context).popUntil((route) => route.isFirst);
       },
     );
   }

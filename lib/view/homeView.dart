@@ -43,7 +43,7 @@ class MyHomePage extends StatelessWidget {
               systemNavigationBarIconBrightness: Brightness.dark),
         ),
         extendBodyBehindAppBar: false,
-        floatingActionButton: buildSpeedDial(),
+        floatingActionButton: buildSpeedDial(context),
         backgroundColor: Colors.grey.shade200,
         body: ListView(
           children: [
@@ -197,7 +197,7 @@ class MyHomePage extends StatelessWidget {
         ));
   }
 
-  SpeedDial buildSpeedDial() {
+  SpeedDial buildSpeedDial(BuildContext context) {
     return SpeedDial(
       /// both default to 16
       marginEnd: 19,
@@ -224,7 +224,7 @@ class MyHomePage extends StatelessWidget {
       closeManually: false,
       curve: Curves.easeInOutCirc,
       overlayColor: Colors.black87,
-      overlayOpacity: 0.7,
+      overlayOpacity: 0.9,
       onOpen: () => print('OPENING DIAL'),
       onClose: () => print('DIAL CLOSED'),
       tooltip: 'Crisis Menu ',

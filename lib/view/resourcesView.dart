@@ -116,7 +116,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                       onPressed: () {
                         launch('https://www.crisistextline.org/');
                       },
-                      child: Text("Criss Text line Website"),
+                      child: Text("Crisis Text line Website"),
                     ),
                   ]),
                   Divider(),

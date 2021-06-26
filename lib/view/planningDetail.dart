@@ -115,7 +115,11 @@ class _PlanningState extends State<PlanningDetail>
         children: [
           Align(
               alignment: Alignment.center,
-              child: Image.asset("assets/images/3009286-ai.png", height: 300, width: 300,)),
+              child: Image.asset(
+                "assets/images/3009286-ai.png",
+                height: 300,
+                width: 300,
+              )),
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
@@ -176,6 +180,21 @@ class _PlanningState extends State<PlanningDetail>
               ));
   }
 
+  Widget perfect_icon(String title) {
+    if (title == 'Warning') {
+      return Icon(
+        Icons.warning,
+        color: Color(0xFF3EB16F),
+        size: 40,
+      );
+    }
+    return Icon(
+        Icons.star,
+        color: Color(0xFF3EB16F),
+        size: 40,
+      );
+  }
+
   Widget universalBuild(universalData, bool isContacts) {
     if (isContacts) {
       print("return Contacts");
@@ -203,11 +222,7 @@ class _PlanningState extends State<PlanningDetail>
                   child: ListTile(
                     leading: Hero(
                         tag: datalist.id,
-                        child: Icon(
-                          Icons.star,
-                          color: Color(0xFF3EB16F),
-                          size: 40,
-                        )),
+                        child: perfect_icon(widget.title)),
                     title: Text(
                       datalist.statergy,
                       style: TextStyle(
@@ -288,7 +303,10 @@ class _PlanningState extends State<PlanningDetail>
                           fontWeight: FontWeight.w400),
                     ),
                     trailing: IconButton(
-                      icon: Icon(Icons.edit,color: Colors.cyan[900 ],),
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.cyan[900],
+                      ),
                       onPressed: () {
                         _showMyDialogContacts(context, this.widget.title, true,
                             datalist.id, this.widget.table, datalist);
@@ -625,7 +643,10 @@ class _PlanningState extends State<PlanningDetail>
           ),
           actions: <Widget>[
             TextButton(
-              child: Text(addorEdit + title,style: TextStyle(color: Color(0xFF3EB16F)),),
+              child: Text(
+                addorEdit + title,
+                style: TextStyle(color: Color(0xFF3EB16F)),
+              ),
               onPressed: () async {
                 try {
                   if (_formKey.currentState.validate()) {
@@ -680,7 +701,10 @@ class _PlanningState extends State<PlanningDetail>
               },
             ),
             TextButton(
-              child: Text('Cancel',style: TextStyle(color: Color(0xFF3EB16F)),),
+              child: Text(
+                'Cancel',
+                style: TextStyle(color: Color(0xFF3EB16F)),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },

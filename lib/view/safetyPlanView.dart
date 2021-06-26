@@ -2,6 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:safety/view/DetailsView.dart';
 
 class SafetyPlan extends StatelessWidget {
+
+  Widget containerDataStatic(BuildContext context, IconData icon, String title,
+      String subtitle) {
+    String description = '';
+    return new Container(
+        child: new InkWell(
+            splashColor: Colors.greenAccent,
+            child: Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(
+                      icon,
+                      color: Colors.red[700],
+                      size: 40,
+                    ),
+                    title: Text(title),
+                    subtitle: Text(subtitle),
+                  ),
+                ],
+              ),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsStatic(
+                    title: title,
+                  ),
+                ),
+              );
+            }));
+  }
+
   Widget containerData(BuildContext context, IconData icon, String title,
       String subtitle, String table) {
     String description = '';
@@ -56,6 +91,11 @@ class SafetyPlan extends StatelessWidget {
                     description = 'i am in Contacts';
                   }
                   break;
+                case 'ContactsP':
+                  {
+                    description = 'i am in ContactsP';
+                  }
+                  break;
                 default:
                   {
                     print("Invalid choice");
@@ -100,12 +140,17 @@ class SafetyPlan extends StatelessWidget {
             "Tap the Card to add warning signs", 'Warning'),
         containerData(context, Icons.music_note, "Coping Strategies",
             "Tap the Card to add coping strategies", 'Coping'),
-        containerData(context, Icons.wb_sunny, "Reasons to Live",
-            "Tap the Card to add things that are worth for living", 'Reasons'),
         containerData(context, Icons.place, "Places for Distraction",
             "Tap the Card to add places that distract you", 'Places'),
+        
         containerData(context, Icons.contact_phone, "Contacts",
             "Tap the Card to add contacts", 'Contacts'),
+         containerData(context, Icons.contact_page, "Professional Contacts",
+            "Tap the Card to add contacts", 'ContactsP'),
+        containerDataStatic(context, Icons.maps_home_work_outlined,"Making your Environment Safe",
+            "Tap the Card to add things that are worth for living"),
+        containerData(context, Icons.wb_sunny, "Reasons to Live",
+            "Tap the Card to add things that are worth for living", 'Reasons'),
         
         containerData(
             context,

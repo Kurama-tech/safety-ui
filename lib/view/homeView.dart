@@ -43,7 +43,7 @@ class MyHomePage extends StatelessWidget {
               systemNavigationBarIconBrightness: Brightness.dark),
         ),
         extendBodyBehindAppBar: false,
-        floatingActionButton: buildSpeedDial(),
+        floatingActionButton: buildSpeedDial(context),
         backgroundColor: Colors.grey.shade200,
         body: ListView(
           children: [
@@ -197,7 +197,7 @@ class MyHomePage extends StatelessWidget {
         ));
   }
 
-  SpeedDial buildSpeedDial() {
+  SpeedDial buildSpeedDial(BuildContext context) {
     return SpeedDial(
       /// both default to 16
       marginEnd: 19,
@@ -248,7 +248,7 @@ class MyHomePage extends StatelessWidget {
           child: Icon(Icons.call),
           backgroundColor: Colors.redAccent,
           label: 'Call 911',
-          labelStyle: TextStyle(fontSize: 18.0,color: Colors.blue),
+          labelStyle: TextStyle(fontSize: 18.0,color: Colors.white),
           onTap: () => launch("tel:911"),
           onLongPress: () => print('FIRST CHILD LONG PRESS'),
         ),
@@ -259,7 +259,7 @@ class MyHomePage extends StatelessWidget {
           ),
           backgroundColor: Colors.orangeAccent,
           label: 'Call Helpline',
-          labelStyle: TextStyle(fontSize: 18.0,color: Colors.blue),
+          labelStyle: TextStyle(fontSize: 18.0,color: Colors.white),
           onTap: () {
             launch("tel:18002738255");
           },

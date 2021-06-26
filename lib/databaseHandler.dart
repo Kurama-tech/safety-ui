@@ -27,6 +27,8 @@ class DatabaseHandler {
       await db.execute(
           'CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY, name TEXT, number INTEGER)');
       await db.execute(
+          'CREATE TABLE IF NOT EXISTS ContactsP (id INTEGER PRIMARY KEY, name TEXT, number INTEGER)');
+      await db.execute(
           'CREATE TABLE IF NOT EXISTS Medications (id INTEGER PRIMARY KEY, tabName TEXT, dateTime TEXT)');
       await db.execute(
           'CREATE TABLE IF NOT EXISTS Appointments (id INTEGER PRIMARY KEY, docName TEXT, dateTime TEXT)');

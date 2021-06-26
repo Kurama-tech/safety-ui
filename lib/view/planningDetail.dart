@@ -34,6 +34,7 @@ class _PlanningState extends State<PlanningDetail>
 
     final dataProvider = getPerfectProvider(widget.table, false);
     bool isContact = widget.table == 'Contacts' ? true : false;
+    bool isContactP = widget.table == 'ContactsP' ? true : false;
     dbhelper.onDbInit().then((database) {
       //dbhelper.insertUnversal(database, this.widget.table, model);
       //Rdbhelper.insertContact(database, this.widget.table, modelC);
@@ -42,7 +43,7 @@ class _PlanningState extends State<PlanningDetail>
         print(widget.table);
         print(value);
         //print(isContact);
-        isContactG = isContact;
+        isContactG = isContact || isContactP;
         itemCount = value;
         nextId = itemCount + 1;
 
@@ -53,7 +54,15 @@ class _PlanningState extends State<PlanningDetail>
               .then((value) {
             dataProvider.setData(value);
           });
-        } else {
+        }
+        else if(isContactP){
+          dbhelper
+              .getListDataContacts(database, this.widget.table)
+              .then((value) {
+            dataProvider.setData(value);
+          });
+        } 
+        else {
           dbhelper.getListData(database, this.widget.table).then((value) {
             dataProvider.setData(value);
           });
@@ -96,6 +105,11 @@ class _PlanningState extends State<PlanningDetail>
       case 'Contacts':
         {
           return Provider.of<ContactsP>(context, listen: listen);
+        }
+        break;
+      case 'ContactsP':
+        {
+          return Provider.of<ContactsPP>(context, listen: listen);
         }
         break;
       default:
@@ -150,13 +164,13 @@ class _PlanningState extends State<PlanningDetail>
     // final universalData = Provider.of<UniversalProvider>(context);
     final dataProvider = getPerfectProvider(this.widget.table, true);
     bool isContact = this.widget.table == 'Contacts' ? true : false;
-
+    bool isContactP = this.widget.table == 'ContactsP' ? true : false;
     return Center(
         child: !dataProvider.flag
             ? noDataProgress(dataProvider.noData)
             : ListView(
                 children: <Widget>[
-                  universalBuild(dataProvider, isContact),
+                  universalBuild(dataProvider, isContact || isContactP),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
@@ -180,19 +194,19 @@ class _PlanningState extends State<PlanningDetail>
               ));
   }
 
-  Widget perfect_icon(String title) {
-    if (title == 'Warning') {
+  Widget perfectIcon(String title) {
+    if (title == 'Warning Signs') {
       return Icon(
         Icons.warning,
-        color: Color(0xFF3EB16F),
+        color: Colors.red[700],
         size: 40,
       );
     }
     return Icon(
-        Icons.star,
-        color: Color(0xFF3EB16F),
-        size: 40,
-      );
+      Icons.star,
+      color: Color(0xFF3EB16F),
+      size: 40,
+    );
   }
 
   Widget universalBuild(universalData, bool isContacts) {
@@ -221,8 +235,7 @@ class _PlanningState extends State<PlanningDetail>
                 child: Center(
                   child: ListTile(
                     leading: Hero(
-                        tag: datalist.id,
-                        child: perfect_icon(widget.title)),
+                        tag: datalist.id, child: perfectIcon(widget.title)),
                     title: Text(
                       datalist.statergy,
                       style: TextStyle(
@@ -622,9 +635,9 @@ class _PlanningState extends State<PlanningDetail>
                       ),
                       TextFormField(
                         controller: _numberTextCtrl,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                         decoration: InputDecoration(
-                          hintText: 'Enter Number With Country Code',
+                          hintText: 'Enter Number',
                         ),
                         validator: (String value) {
                           if (value == null || value.isEmpty) {

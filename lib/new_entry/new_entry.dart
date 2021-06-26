@@ -97,7 +97,7 @@ class _NewEntryState extends State<NewEntry> {
               ),
               TextFormField(
                 controller: dosageController,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
                 style: TextStyle(
                   fontSize: 16,
                 ),

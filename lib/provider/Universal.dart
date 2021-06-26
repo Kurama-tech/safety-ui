@@ -131,6 +131,24 @@ class ContactsP with ChangeNotifier {
   }
 }
 
+class ContactsPP with ChangeNotifier {
+  List<Contacts> data;
+
+  bool flag = false;
+  bool noData = false;
+
+  setData(dbData) {
+    data = dbData;
+    flag = true;
+    if (dbData.length < 1) {
+      noData = true;
+      data = null;
+      flag = false;
+    }
+    notifyListeners();
+  }
+}
+
 class AppointmentsP with ChangeNotifier {
   List<AppointmentsModel> data;
   bool flag = false;

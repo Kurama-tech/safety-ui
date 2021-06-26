@@ -28,6 +28,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => Reasons()),
         ChangeNotifierProvider(create: (_) => Notes()),
         ChangeNotifierProvider(create: (_) => ContactsP()),
+        ChangeNotifierProvider(create: (_) => ContactsPP()),
         ChangeNotifierProvider(create: (_) => Places()),
         ChangeNotifierProvider(create: (_) => AppointmentsP()),
         ChangeNotifierProvider(create: (_) => MedicationsP()),

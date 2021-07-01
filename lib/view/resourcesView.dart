@@ -128,7 +128,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
                         style: TextStyle(fontSize: 20),
                       ),
                       subtitle: Text(
-                        "SAMHSA's National Helpline is a free confidential information and referral servide that is available 24/7 for individuals for families facing mental halth or substance use problems.",
+                        "SAMHSA's National Helpline is a free confidential information and referral service that is available 24/7 for individuals for families facing mental health or substance use problems.",
                         style: GoogleFonts.robotoSlab(fontSize: 15.0),
                       ),
                     ),
@@ -339,7 +339,7 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
             icon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
-            label: 'Remainders',
+            label: 'Reminders',
             icon: Icon(Icons.notifications),
           ),
           BottomNavigationBarItem(

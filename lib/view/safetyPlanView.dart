@@ -148,7 +148,7 @@ class SafetyPlan extends StatelessWidget {
          containerData(context, Icons.contact_page, "Professional Contacts",
             "Tap the Card to add contacts", 'ContactsP'),
         containerDataStatic(context, Icons.maps_home_work_outlined,"Making your Environment Safe",
-            "Tap the Card to add things that are worth for living"),
+            "Tap the Card to know how you can make Environment safe"),
         containerData(context, Icons.wb_sunny, "Reasons to Live",
             "Tap the Card to add things that are worth for living", 'Reasons'),
         
@@ -156,7 +156,7 @@ class SafetyPlan extends StatelessWidget {
             context,
             Icons.grid_on,
             "Other",
-            "Tap the Card to add any additionl notes that could helpful",
+            "Tap the Card to add any additional notes that could helpful",
             'Notes'),
         //containerData(icon, title, subtitle)
       ]),
@@ -202,7 +202,7 @@ class SafetyPlan extends StatelessWidget {
             icon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
-            label: 'Remainders',
+            label: 'Reminders',
             icon: Icon(Icons.notifications),
           ),
           BottomNavigationBarItem(

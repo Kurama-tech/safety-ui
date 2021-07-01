@@ -156,7 +156,7 @@ class _MusicView extends State<MusicView> {
             icon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
-            label: 'Remainders',
+            label: 'Reminders',
             icon: Icon(Icons.notifications),
           ),
           BottomNavigationBarItem(

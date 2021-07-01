@@ -248,7 +248,7 @@ class MyHomePage extends StatelessWidget {
           child: Icon(Icons.call),
           backgroundColor: Colors.redAccent,
           label: 'Call 911',
-          labelStyle: TextStyle(fontSize: 18.0,color: Colors.white),
+          labelStyle: TextStyle(fontSize: 18.0,color: Colors.greenAccent),
           onTap: () => launch("tel:911"),
           onLongPress: () => print('FIRST CHILD LONG PRESS'),
         ),
@@ -259,7 +259,7 @@ class MyHomePage extends StatelessWidget {
           ),
           backgroundColor: Colors.orangeAccent,
           label: 'Call Helpline',
-          labelStyle: TextStyle(fontSize: 18.0,color: Colors.white),
+          labelStyle: TextStyle(fontSize: 18.0,color: Colors.greenAccent),
           onTap: () {
             launch("tel:18002738255");
           },

@@ -105,7 +105,7 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
             icon: Icon(Icons.favorite),
           ),
           BottomNavigationBarItem(
-            label: 'Remainders',
+            label: 'Reminders',
             icon: Icon(Icons.notifications),
           ),
           BottomNavigationBarItem(

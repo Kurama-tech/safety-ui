@@ -112,6 +112,11 @@ class _PlanningState extends State<PlanningDetail>
           return Provider.of<ContactsPP>(context, listen: listen);
         }
         break;
+      case 'Environment':
+        {
+          return Provider.of<Environments>(context, listen: listen);
+        }
+        break;
       default:
         {
           throw Error();

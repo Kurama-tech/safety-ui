@@ -26,7 +26,7 @@ class Details extends StatelessWidget {
   }
 }
 
-class DetailsStatic extends StatelessWidget {
+/* class DetailsStatic extends StatelessWidget {
   final String title;
 
   const DetailsStatic({Key key, this.title}) : super(key: key);
@@ -46,4 +46,4 @@ class DetailsStatic extends StatelessWidget {
         child: Text(
                 "It is critical to make your environment safe by removing things you could use to hurt yourself. Either remove them yourself or talk to a truted friend or family member and have them remove objects such as guns, knives, razors, or pills. If you need pills regularly, your trusted friend or family member can give you the pills on an as-needed basis according to the prescription. If you have a specific plan in place, make sure to tell your trusted friend or family member about the plan so they can ensure your safety.",style: TextStyle(fontSize: 20,fontFamily: "neu"),)));
   }
-}
+} */

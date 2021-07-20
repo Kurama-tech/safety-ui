@@ -78,7 +78,7 @@ class Reasons with ChangeNotifier {
 }
 
 class Places with ChangeNotifier {
-  List<UnversalModel> data;
+  List<PlacesModel> data;
 
   bool flag = false;
   bool noData = false;

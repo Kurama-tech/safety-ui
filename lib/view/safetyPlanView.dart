@@ -3,7 +3,7 @@ import 'package:safety/view/DetailsView.dart';
 
 class SafetyPlan extends StatelessWidget {
 
-  /* Widget containerDataStatic(BuildContext context, IconData icon, String title,
+  Widget containerDataStatic(BuildContext context, IconData icon, String title,
       String subtitle) {
     String description = '';
     return new Container(
@@ -35,7 +35,7 @@ class SafetyPlan extends StatelessWidget {
                 ),
               );
             }));
-  } */
+  }
 
   Widget containerData(BuildContext context, IconData icon, String title,
       String subtitle, String table) {
@@ -148,10 +148,10 @@ class SafetyPlan extends StatelessWidget {
         containerData(context, Icons.place, "Places for Distraction",
             "Tap the Card to add places that distract you", 'Places'),
         
-        containerData(context, Icons.contact_phone, "Contacts",
-            "Tap the Card to add contacts", 'Contacts'),
-        containerData(context, Icons.contact_page, "Professional Contacts",
-            "Tap the Card to add contacts", 'ContactsP'),
+        containerDataStatic(context, Icons.contact_phone, "Contacts",
+            "Tap the Card to add contacts"),
+        //containerData(context, Icons.contact_page, "Professional Contacts",
+        //    "Tap the Card to add contacts", 'ContactsP'),
         containerData(context, Icons.maps_home_work_outlined,"Making your Environment Safe",
             "Tap the Card to know how you can make Environment safe",'Environment'),
         containerData(context, Icons.wb_sunny, "Reasons to Live",

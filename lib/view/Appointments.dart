@@ -101,69 +101,70 @@ class _AppointmentsState extends State<Appointments>
   Widget noDataProgress(bool nodata) {
     final provider = Provider.of<AppointmentsP>(context);
     if (provider.noData) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Align(
-              alignment: Alignment.center,
+      return Container(
+        color: Color(0xFFF6F8FC),
+        child: Column(
+          children: [
+            Flexible(
+              flex: 7,
               child: Container(
-            color: Color(0xFFF6F8FC),
-            child: Center(
-              child: Text(
-                "Press + to add a Appointment",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 24,
-                    color: Color(0xFFC9C9C9),
-                    fontWeight: FontWeight.bold),
+                color: Color(0xFFF6F8FC),
+                child: Center(
+                  child: Text(
+                    "Press + to add a Appointment",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 24,
+                        color: Color(0xFFC9C9C9),
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
             ),
-          ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child:Container(
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 10.0, bottom: 4),
-                      child: FlatButton(
-                        color: Color(0xFF3EB16F),
-                        shape: StadiumBorder(),
-                        onPressed: () {
-                          Navigator.of(context).push(
-                      PageRouteBuilder<Null>(
-                        pageBuilder: (BuildContext context,
-                            Animation<double> animation,
-                            Animation<double> secondaryAnimation) {
-                          return AnimatedBuilder(
-                              animation: animation,
-                              builder: (BuildContext context, Widget child) {
-                                return Opacity(
-                                  opacity: animation.value,
-                                  child: ApponintmentsEntry(),
-                                );
-                              });
-                        },
-                        transitionDuration: Duration(milliseconds: 500),
-                      ),
-                    );
-                        },
-                        child: Center(
-                          child: Text(
-                            "Add + Appointment",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 60,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 4),
+                  child: FlatButton(
+                    color: Color(0xFF3EB16F),
+                    shape: StadiumBorder(),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder<Null>(
+                          pageBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation) {
+                            return AnimatedBuilder(
+                                animation: animation,
+                                builder: (BuildContext context, Widget child) {
+                                  return Opacity(
+                                    opacity: animation.value,
+                                    child: ApponintmentsEntry(),
+                                  );
+                                });
+                          },
+                          transitionDuration: Duration(milliseconds: 500),
+                        ),
+                      );
+                    },
+                    child: Center(
+                      child: Text(
+                        "Add + Appointment",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
                   ),
-          )
-        ],
+                ),
+              ),
+            )
+          ],
+        ),
       );
     }
     return Container(
@@ -175,7 +176,7 @@ class _AppointmentsState extends State<Appointments>
   Widget build(BuildContext context) {
     final provider = Provider.of<AppointmentsP>(context);
     // TODO: implement build
-    return SingleChildScrollView(
+    return Container(
       child: !provider.flag || provider.noData
           ? noDataProgress(provider.noData)
           : ListView(shrinkWrap: true, children: [
@@ -204,10 +205,8 @@ class _AppointmentsState extends State<Appointments>
                                   child: Material(
                                     color: Colors.transparent,
                                     child: Text(
-                                      
-                                      "Dr "+datalist.docName,
+                                      "Dr " + datalist.docName,
                                       style: TextStyle(
-                                          
                                           fontSize: 22,
                                           color: Color(0xFF3EB16F),
                                           fontWeight: FontWeight.w500),
@@ -215,64 +214,66 @@ class _AppointmentsState extends State<Appointments>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 10,),
-                                 Text(
-                                      parsedDatetime(datalist.dateTime),
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Color(0xFFC9C9C9),
-                                          fontWeight: FontWeight.w400),
-                                    ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  parsedDatetime(datalist.dateTime),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xFFC9C9C9),
+                                      fontWeight: FontWeight.w400),
+                                ),
                               ],
                             ),
                           ),
                         ),
                         onTap: () async {
-                           await _showStepper(
-                                      context, datalist.id, true, datalist);
+                          await _showStepper(
+                              context, datalist.id, true, datalist);
                         },
                       ),
                     );
                   }),
               Container(
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 10.0, bottom: 4),
-                      child: FlatButton(
-                        color: Color(0xFF3EB16F),
-                        shape: StadiumBorder(),
-                        onPressed: () {
-                          Navigator.of(context).push(
-                      PageRouteBuilder<Null>(
-                        pageBuilder: (BuildContext context,
-                            Animation<double> animation,
-                            Animation<double> secondaryAnimation) {
-                          return AnimatedBuilder(
-                              animation: animation,
-                              builder: (BuildContext context, Widget child) {
-                                return Opacity(
-                                  opacity: animation.value,
-                                  child: ApponintmentsEntry(),
-                                );
-                              });
-                        },
-                        transitionDuration: Duration(milliseconds: 500),
-                      ),
-                    );
-                        },
-                        child: Center(
-                          child: Text(
-                            "Add + Appointment",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                height: 60,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 4),
+                  child: FlatButton(
+                    color: Color(0xFF3EB16F),
+                    shape: StadiumBorder(),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder<Null>(
+                          pageBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation) {
+                            return AnimatedBuilder(
+                                animation: animation,
+                                builder: (BuildContext context, Widget child) {
+                                  return Opacity(
+                                    opacity: animation.value,
+                                    child: ApponintmentsEntry(),
+                                  );
+                                });
+                          },
+                          transitionDuration: Duration(milliseconds: 500),
+                        ),
+                      );
+                    },
+                    child: Center(
+                      child: Text(
+                        "Add + Appointment",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
                   ),
+                ),
+              ),
             ]),
     );
   }

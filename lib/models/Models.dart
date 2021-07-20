@@ -19,6 +19,29 @@ class UnversalModel {
   }
 }
 
+class PlacesModel {
+  final int id;
+  final String statergy;
+  final String landmark;
+
+  PlacesModel({this.id, this.statergy, this.landmark});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'statergy': statergy,
+      'landmark': landmark,
+    };
+  }
+
+  // Implement toString to make it easier to see information about
+  // each dog when using the print statement.
+  @override
+  String toString() {
+    return 'UnversalModel{id: $id, statergy: $statergy, landmark: $landmark}';
+  }
+}
+
 class Contacts {
   final int id;
   final String name;
@@ -44,11 +67,11 @@ class AppointmentsModel {
   final String dateTime;
 
   AppointmentsModel({this.id, this.docName, this.dateTime});
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {'id': id, 'docName': docName, 'dateTime': dateTime};
   }
 
-   @override
+  @override
   String toString() {
     return 'Appointments{id: $id, name: $docName, number: $dateTime}';
   }
@@ -60,7 +83,7 @@ class MedicationsModel {
   final String dateTime;
 
   MedicationsModel({this.id, this.tabName, this.dateTime});
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {'id': id, 'docName': tabName, 'dateTime': dateTime};
   }
 }

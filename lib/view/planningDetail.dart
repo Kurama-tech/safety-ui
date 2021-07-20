@@ -26,6 +26,7 @@ class _PlanningState extends State<PlanningDetail>
   int itemCount = 0;
   int nextId = 0;
   bool isContactG = false;
+  bool isPlacesG = false;
   bool noData = false;
   @override
   void initState() {
@@ -35,6 +36,7 @@ class _PlanningState extends State<PlanningDetail>
     final dataProvider = getPerfectProvider(widget.table, false);
     bool isContact = widget.table == 'Contacts' ? true : false;
     bool isContactP = widget.table == 'ContactsP' ? true : false;
+    bool isPlaces = this.widget.table == 'Places' ? true : false;
     dbhelper.onDbInit().then((database) {
       //dbhelper.insertUnversal(database, this.widget.table, model);
       //Rdbhelper.insertContact(database, this.widget.table, modelC);
@@ -43,6 +45,7 @@ class _PlanningState extends State<PlanningDetail>
         print(widget.table);
         print(value);
         //print(isContact);
+        isPlacesG = isPlaces;
         isContactG = isContact || isContactP;
         itemCount = value;
         nextId = itemCount + 1;
@@ -54,15 +57,17 @@ class _PlanningState extends State<PlanningDetail>
               .then((value) {
             dataProvider.setData(value);
           });
-        }
-        else if(isContactP){
+        } else if (isContactP) {
           dbhelper
               .getListDataContacts(database, this.widget.table)
               .then((value) {
             dataProvider.setData(value);
           });
-        } 
-        else {
+        } else if (isPlaces) {
+          dbhelper.getListDataPlaces(database, this.widget.table).then((value) {
+            dataProvider.setData(value);
+          });
+        } else {
           dbhelper.getListData(database, this.widget.table).then((value) {
             dataProvider.setData(value);
           });
@@ -148,6 +153,9 @@ class _PlanningState extends State<PlanningDetail>
                 if (isContactG) {
                   _showMyDialogContacts(context, this.widget.title, false,
                       nextId, this.widget.table);
+                } else if (isPlacesG) {
+                  _showPlacesDialog(context, this.widget.title, false, nextId,
+                      this.widget.table);
                 } else {
                   _showMyDialog(context, this.widget.title, false, nextId,
                       this.widget.table);
@@ -170,12 +178,14 @@ class _PlanningState extends State<PlanningDetail>
     final dataProvider = getPerfectProvider(this.widget.table, true);
     bool isContact = this.widget.table == 'Contacts' ? true : false;
     bool isContactP = this.widget.table == 'ContactsP' ? true : false;
+    bool isPlaces = this.widget.table == 'Places' ? true : false;
     return Center(
         child: !dataProvider.flag
             ? noDataProgress(dataProvider.noData)
             : ListView(
                 children: <Widget>[
-                  universalBuild(dataProvider, isContact || isContactP),
+                  universalBuild(
+                      dataProvider, isContact || isContactP, isPlaces),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: ElevatedButton(
@@ -183,10 +193,14 @@ class _PlanningState extends State<PlanningDetail>
                           backgroundColor:
                               MaterialStateProperty.all(Colors.cyan[900])),
                       onPressed: () {
-                        print(isContact);
-                        if (isContact) {
+                        print("is contact" + isContact.toString());
+                        print("is contact" + isContactP.toString());
+                        if (isContact || isContactP) {
                           _showMyDialogContacts(context, this.widget.title,
                               false, nextId, this.widget.table);
+                        } else if (isPlaces) {
+                          _showPlacesDialog(context, this.widget.title, false,
+                              nextId, this.widget.table);
                         } else {
                           _showMyDialog(context, this.widget.title, false,
                               nextId, this.widget.table);
@@ -206,6 +220,12 @@ class _PlanningState extends State<PlanningDetail>
         color: Colors.red[700],
         size: 40,
       );
+    } else if (title == 'Places for Distraction') {
+      return Icon(
+        Icons.place,
+        color: Color(0xFF3EB16F),
+        size: 40,
+      );
     }
     return Icon(
       Icons.star,
@@ -214,10 +234,80 @@ class _PlanningState extends State<PlanningDetail>
     );
   }
 
-  Widget universalBuild(universalData, bool isContacts) {
+  Widget placesBuild(universalData) {
+    return ListView.builder(
+        shrinkWrap: true,
+        itemCount: universalData.data.length,
+        itemBuilder: (context, i) {
+          final datalist = universalData.data[i];
+          return Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+            height: 100,
+            width: double.maxFinite,
+            child: InkWell(
+              highlightColor: Colors.white,
+              splashColor: Colors.grey,
+              child: Card(
+                elevation: 5,
+                child: Center(
+                  child: ListTile(
+                    leading: Hero(
+                        tag: datalist.id, child: perfectIcon(widget.title)),
+                    title: Text(
+                      datalist.statergy,
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF3EB16F),
+                          fontWeight: FontWeight.w400),
+                    ),
+                    subtitle: Text(
+                      datalist.landmark,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF3EB16F),
+                      ),
+                    ),
+                    trailing: Wrap(
+                      spacing: 8,
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(
+                            Icons.edit,
+                            color: Colors.blueAccent,
+                          ),
+                          onPressed: () {
+                            _showPlacesDialog(context, this.widget.title, true,
+                                datalist.id, this.widget.table, datalist);
+                          },
+                        ),
+                        IconButton(
+                            icon: Icon(Icons.delete, color: Colors.red),
+                            onPressed: () {
+                              delete(context, this.widget.table, datalist.id,
+                                  false, true);
+                            }),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              onTap: () {},
+            ),
+          );
+        });
+  }
+
+  Widget universalBuild(universalData, bool isContacts, bool isPlaces) {
     if (isContacts) {
       print("return Contacts");
       return contactsBuild(universalData);
+    } else if (isPlaces) {
+      print("places");
+      return placesBuild(universalData);
     }
     return ListView.builder(
         shrinkWrap: true,
@@ -265,7 +355,7 @@ class _PlanningState extends State<PlanningDetail>
                             icon: Icon(Icons.delete, color: Colors.red),
                             onPressed: () {
                               delete(context, this.widget.table, datalist.id,
-                                  false);
+                                  false, isPlaces);
                             }),
                       ],
                     ),
@@ -320,16 +410,7 @@ class _PlanningState extends State<PlanningDetail>
                           color: Color(0xFFC9C9C9),
                           fontWeight: FontWeight.w400),
                     ),
-                    trailing: IconButton(
-                      icon: Icon(
-                        Icons.edit,
-                        color: Colors.cyan[900],
-                      ),
-                      onPressed: () {
-                        _showMyDialogContacts(context, this.widget.title, true,
-                            datalist.id, this.widget.table, datalist);
-                      },
-                    ),
+                    trailing: editContactEnabled(datalist),
                   ),
                 ),
               ),
@@ -339,6 +420,22 @@ class _PlanningState extends State<PlanningDetail>
             ),
           );
         });
+  }
+
+  Widget editContactEnabled(datalist) {
+    if (datalist.id > 0) {
+      return IconButton(
+        icon: Icon(
+          Icons.edit,
+          color: Colors.cyan[900],
+        ),
+        onPressed: () {
+          _showMyDialogContacts(context, this.widget.title, true, datalist.id,
+              this.widget.table, datalist);
+        },
+      );
+    }
+    return null;
   }
 
   Future<void> _showMyDialog(
@@ -547,8 +644,8 @@ class _PlanningState extends State<PlanningDetail>
   }
 
   // ignore: missing_return
-  Future<void> delete(
-      BuildContext context, String table, int id, bool isContacts) {
+  Future<void> delete(BuildContext context, String table, int id,
+      bool isContacts, bool isPlaces) {
     final dataProvider = getPerfectProvider(table, false);
     dbhelper.deleteUniversal(dbConnection, table, id).then((value) async {
       ScaffoldMessenger.of(context)
@@ -560,6 +657,16 @@ class _PlanningState extends State<PlanningDetail>
           dataProvider.setData(value);
           print("delete : " + dataProvider.toString());
 
+          nextId = nextId - 1;
+          if (nextId < 0) {
+            nextId = 0;
+          }
+
+          setState(() {});
+        });
+      } else if (isPlaces) {
+        await dbhelper.getListDataPlaces(dbConnection, table).then((value) {
+          dataProvider.setData(value);
           nextId = nextId - 1;
           if (nextId < 0) {
             nextId = 0;
@@ -582,16 +689,16 @@ class _PlanningState extends State<PlanningDetail>
   }
 
   Widget deleteButtonWidget(BuildContext context, bool showDelete, String table,
-      int id, bool isContacts) {
+      int id, bool isContacts, bool isPlaces) {
     // final dataProvider = getPerfectProvider(table, false);
-    if (showDelete) {
+    if (showDelete && id > 0) {
       return IconButton(
         icon: Icon(
           Icons.delete,
           color: Colors.red,
         ),
         onPressed: () async {
-          delete(context, table, id, isContacts);
+          delete(context, table, id, isContacts, isPlaces);
           Navigator.of(context).pop();
         },
       );
@@ -640,7 +747,8 @@ class _PlanningState extends State<PlanningDetail>
                       ),
                       TextFormField(
                         controller: _numberTextCtrl,
-                        keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
+                        keyboardType: TextInputType.numberWithOptions(
+                            signed: true, decimal: true),
                         decoration: InputDecoration(
                           hintText: 'Enter Number',
                         ),
@@ -727,10 +835,127 @@ class _PlanningState extends State<PlanningDetail>
                 Navigator.of(context).pop();
               },
             ),
-            deleteButtonWidget(context, isEditMode, table, id, true)
+            deleteButtonWidget(context, isEditMode, table, id, true, false)
           ],
         );
       },
+    );
+  }
+
+  Future<void> _showPlacesDialog(
+      BuildContext context, String title, bool isEditMode, int id, String table,
+      [PlacesModel data]) async {
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    TextEditingController _statergyTextCtrl = TextEditingController();
+    TextEditingController _landmarkTextCtrl = TextEditingController();
+    //_statergyTextCtrl.text = '';
+    String addorEdit = 'Add ';
+    if (isEditMode && data != null) {
+      addorEdit = 'Edit ';
+      _statergyTextCtrl.text = data.statergy;
+      _landmarkTextCtrl.text = data.landmark;
+    }
+
+    return showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        scrollable: true,
+        title: Text(addorEdit + title),
+        content: SingleChildScrollView(
+            child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextFormField(
+                controller: _statergyTextCtrl,
+                decoration: InputDecoration(
+                  hintText: 'Enter ' + title,
+                ),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _landmarkTextCtrl,
+                decoration: InputDecoration(
+                  hintText: 'Enter Landmark',
+                ),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+              ),
+            ],
+          ),
+        )),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+            child: const Text('Cancel', style: TextStyle(color: Colors.red)),
+          ),
+          TextButton(
+            child: Text(addorEdit + title,
+                style: TextStyle(color: (Colors.cyan[900]))),
+            onPressed: () async {
+              try {
+                if (_formKey.currentState.validate()) {
+                  var finaltext = _statergyTextCtrl.text;
+                  var landmarktext = _landmarkTextCtrl.text;
+                  final dataProvider = getPerfectProvider(widget.table, false);
+                  PlacesModel model = PlacesModel(
+                      id: id, statergy: finaltext, landmark: landmarktext);
+                  if (isEditMode) {
+                    await dbhelper
+                        .updatePlaces(dbConnection, table, model)
+                        .then((value) async {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content:
+                              Text(title + " " + addorEdit + "Successfull")));
+                      await dbhelper
+                          .getListDataPlaces(dbConnection, table)
+                          .then((value) {
+                        dataProvider.setData(value);
+                        Navigator.of(context).pop();
+                      });
+                    });
+                  } else {
+                    await dbhelper
+                        .insertPlaces(dbConnection, table, model)
+                        .then((value) async {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content:
+                              Text(title + " " + addorEdit + "Successfull")));
+                      await dbhelper
+                          .getListDataPlaces(dbConnection, table)
+                          .then((value) {
+                        print(value.toString());
+                        print(value.length == 0);
+                        dataProvider.setData(value);
+                        setState(() {
+                          nextId = nextId + 1;
+                          Navigator.of(context).pop();
+                        });
+                      });
+                    });
+                  }
+                }
+              } catch (err) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(err.toString())));
+                throw new ErrorHint(err.toString());
+              }
+            },
+          ),
+          //deleteButtonWidget(context, isEditMode, table, id, false)
+        ],
+      ),
     );
   }
 }

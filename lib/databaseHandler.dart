@@ -21,7 +21,7 @@ class DatabaseHandler {
       await db.execute(
           'CREATE TABLE IF NOT EXISTS Reasons (id INTEGER PRIMARY KEY, statergy TEXT)');
       await db.execute(
-          'CREATE TABLE IF NOT EXISTS Places (id INTEGER PRIMARY KEY, statergy TEXT)');
+          'CREATE TABLE IF NOT EXISTS Places (id INTEGER PRIMARY KEY, statergy TEXT, landmark TEXT)');
       await db.execute(
           'CREATE TABLE IF NOT EXISTS Notes (id INTEGER PRIMARY KEY, statergy TEXT)');
       await db.execute(
@@ -35,6 +35,11 @@ class DatabaseHandler {
       await db.execute(
           'CREATE TABLE IF NOT EXISTS Appointments (id INTEGER PRIMARY KEY, docName TEXT, dateTime TEXT)');
     });
+    Contacts data = Contacts(
+        id: 0,
+        name: 'National Suicide Prevention Lifeline',
+        number: 18002738255);
+    insertContact(database, 'ContactsP', data);
     return database;
   }
 
@@ -51,6 +56,13 @@ class DatabaseHandler {
     }
   }
 
+  insertPlaces(Database database, String table, PlacesModel data) async {
+    if (database.isOpen) {
+      return await database.insert(table, data.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace);
+    }
+  }
+
   insertMedication(Database database, MedicationsModel data) async {
     if (database.isOpen) {
       return await database.insert('Medications', data.toMap(),
@@ -60,8 +72,8 @@ class DatabaseHandler {
 
   updateMedication(Database database, MedicationsModel data) async {
     if (database.isOpen) {
-      await database
-          .update('Medications', data.toMap(), where: "id = ?", whereArgs: [data.id]);
+      await database.update('Medications', data.toMap(),
+          where: "id = ?", whereArgs: [data.id]);
     }
   }
 
@@ -74,12 +86,19 @@ class DatabaseHandler {
 
   updateAppointment(Database database, AppointmentsModel data) async {
     if (database.isOpen) {
-      await database
-          .update('Appointments', data.toMap(), where: "id = ?", whereArgs: [data.id]);
+      await database.update('Appointments', data.toMap(),
+          where: "id = ?", whereArgs: [data.id]);
     }
   }
 
   updateUniversal(Database database, String table, UnversalModel data) async {
+    if (database.isOpen) {
+      await database
+          .update(table, data.toMap(), where: "id = ?", whereArgs: [data.id]);
+    }
+  }
+
+  updatePlaces(Database database, String table, PlacesModel data) async {
     if (database.isOpen) {
       await database
           .update(table, data.toMap(), where: "id = ?", whereArgs: [data.id]);
@@ -126,27 +145,40 @@ class DatabaseHandler {
     });
   }
 
-  Future<List<AppointmentsModel>> getListAppointments(
-      Database database) async {
-    final List<Map<String, dynamic>> data = await database.query('Appointments');
+  Future<List<PlacesModel>> getListDataPlaces(
+      Database database, String table) async {
+    final List<Map<String, dynamic>> data = await database.query(table);
 
     return List.generate(data.length, (index) {
-      return AppointmentsModel(
-          id: data[index]['id'], docName: data[index]['docName'], dateTime: data[index]['dateTime']);
+      return PlacesModel(
+          id: data[index]['id'],
+          statergy: data[index]['statergy'],
+          landmark: data[index]['landmark']);
     });
   }
 
-  Future<List<MedicationsModel>> getListMedications(
-      Database database) async {
+  Future<List<AppointmentsModel>> getListAppointments(Database database) async {
+    final List<Map<String, dynamic>> data =
+        await database.query('Appointments');
+
+    return List.generate(data.length, (index) {
+      return AppointmentsModel(
+          id: data[index]['id'],
+          docName: data[index]['docName'],
+          dateTime: data[index]['dateTime']);
+    });
+  }
+
+  Future<List<MedicationsModel>> getListMedications(Database database) async {
     final List<Map<String, dynamic>> data = await database.query('Medications');
 
     return List.generate(data.length, (index) {
       return MedicationsModel(
-          id: data[index]['id'], tabName: data[index]['tabName'], dateTime: data[index]['dateTime']);
+          id: data[index]['id'],
+          tabName: data[index]['tabName'],
+          dateTime: data[index]['dateTime']);
     });
   }
-
-
 
   Future<List<Contacts>> getListDataContacts(
       Database database, String table) async {

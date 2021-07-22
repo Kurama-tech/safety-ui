@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                         },
                         child: Center(
                           child: Text(
-                            "Add Medicine Remainders",
+                            "Add Medicine Reminders",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,

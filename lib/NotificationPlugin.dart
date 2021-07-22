@@ -225,7 +225,7 @@ class NotificationPlugin {
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
-      'Appointment Remainder!',
+      'Appointment Reminder!',
       'Appointment with doctor $doctorNAme at ${when.hour}:${when.minute}',
       tz.TZDateTime.from(scheduleNotificationDateTime.subtract(Duration(hours: 1)), tz.local),
       platformChannelSpecifics,

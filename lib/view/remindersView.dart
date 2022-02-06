@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:safety/homepage/homepage.dart';
-import 'package:safety/view/Appointments.dart';
-import 'package:safety/view/Medications.dart';
+import 'package:my_safety/homepage/homepage.dart';
+import 'package:my_safety/view/Appointments.dart';
+import 'package:my_safety/view/Medications.dart';
 
 class Reminders extends StatefulWidget {
   const Reminders({key}) : super(key: key);
@@ -25,7 +25,9 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: Color(0xFFF6F8FC),
       appBar: AppBar(
-        title: Text("Reminders"),
+        title: Text("Reminders", style: TextStyle(color: Colors.black),),
+        foregroundColor: Colors.greenAccent,
+        backgroundColor: Colors.greenAccent,
         actions: [
           IconButton(
               icon: Icon(Icons.home),
@@ -73,7 +75,6 @@ class _RemindersState extends State<Reminders> with TickerProviderStateMixin {
           switch (value) {
             case 0:
               {
-                
                 Navigator.pushNamed(context, '/SafetyPlan');
               }
               break;

@@ -2,16 +2,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:safety/global_bloc.dart';
-import 'package:safety/provider/Universal.dart';
-import 'package:safety/provider/counter.dart';
+import 'package:my_safety/global_bloc.dart';
+import 'package:my_safety/provider/Universal.dart';
+import 'package:my_safety/provider/counter.dart';
 
-import 'package:safety/view/homeView.dart';
-import 'package:safety/view/musicView.dart';
-import 'package:safety/view/remindersView.dart';
-import 'package:safety/view/resourcesView.dart';
-import 'package:safety/view/safetyPlanView.dart';
-import 'package:safety/view/splashView.dart';
+import 'package:my_safety/view/homeView.dart';
+import 'package:my_safety/view/musicView.dart';
+import 'package:my_safety/view/remindersView.dart';
+import 'package:my_safety/view/resourcesView.dart';
+import 'package:my_safety/view/safetyPlanView.dart';
+import 'package:my_safety/view/splashView.dart';
 
 /// This is a reimplementation of the default Flutter application using provider + [ChangeNotifier].
 

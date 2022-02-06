@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:safety/provider/counter.dart';
+import 'package:my_safety/provider/counter.dart';
 import 'package:provider/provider.dart';
 
 class Count extends StatelessWidget {

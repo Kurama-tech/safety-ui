@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:safety/databaseHandler.dart';
-import 'package:safety/models/Models.dart';
-import 'package:safety/provider/Universal.dart';
+import 'package:my_safety/databaseHandler.dart';
+import 'package:my_safety/models/Models.dart';
+import 'package:my_safety/provider/Universal.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';

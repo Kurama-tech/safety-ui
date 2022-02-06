@@ -2,12 +2,12 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:safety/NotificationPlugin.dart';
-import 'package:safety/databaseHandler.dart';
-import 'package:safety/models/Models.dart';
-import 'package:safety/new_entry/new_entry.dart';
-import 'package:safety/provider/Universal.dart';
-import 'package:safety/success_screen/success_screen.dart';
+import 'package:my_safety/NotificationPlugin.dart';
+import 'package:my_safety/databaseHandler.dart';
+import 'package:my_safety/models/Models.dart';
+import 'package:my_safety/new_entry/new_entry.dart';
+import 'package:my_safety/provider/Universal.dart';
+import 'package:my_safety/success_screen/success_screen.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ApponintmentsEntry extends StatefulWidget {
@@ -79,7 +79,6 @@ class _AppointmentsEntry extends State<ApponintmentsEntry>
 
   @override
   void initState() {
-    
     _scaffoldKey = GlobalKey<ScaffoldState>();
     notificationPlugin
         .setListenerForLowerVersions(onNotificationInLowerVersions);
@@ -106,7 +105,7 @@ class _AppointmentsEntry extends State<ApponintmentsEntry>
   @override
   Widget build(BuildContext context) {
     TextEditingController _statergyTextCtrl = TextEditingController();
-    
+
     final provider = Provider.of<AppointmentsP>(context, listen: false);
     // TODO: implement build
     return Scaffold(

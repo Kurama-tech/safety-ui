@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:safety/view/planningDetail.dart';
+import 'package:my_safety/view/planningDetail.dart';
 
 class Details extends StatelessWidget {
   final String title;
@@ -14,7 +14,9 @@ class Details extends StatelessWidget {
     // TODO: implement build
     return new Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(title , style: TextStyle(color: Colors.black),),
+          foregroundColor: Colors.greenAccent,
+          backgroundColor: Colors.greenAccent,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
               side: BorderSide(width: 2, color: Colors.white)),
@@ -49,14 +51,16 @@ class DetailsStatic extends StatelessWidget {
                   text: 'Professional Contacts'),
             ],
           ),
-          title: Text('Contacts'),
+          title: Text('Contacts', style: TextStyle(color: Colors.black),),
+          foregroundColor: Colors.greenAccent,
+          backgroundColor: Colors.greenAccent,
         ),
         body: TabBarView(
           children: [
             PlanningDetail(
-              description: "hello", title: title, table: "Contacts"),
+                description: "hello", title: title, table: "Contacts"),
             PlanningDetail(
-              description: "hello", title: title, table: "ContactsP"),
+                description: "hello", title: title, table: "ContactsP"),
           ],
         ),
       ),

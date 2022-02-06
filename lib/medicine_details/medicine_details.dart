@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:safety/global_bloc.dart';
-import 'package:safety/models/medicine.dart';
-
+import 'package:my_safety/global_bloc.dart';
+import 'package:my_safety/models/medicine.dart';
 
 class MedicineDetails extends StatelessWidget {
   final Medicine medicine;
@@ -112,7 +111,8 @@ class MedicineDetails extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           _globalBloc.removeMedicine(medicine);
-                          Navigator.of(context).popUntil((route) => route.isFirst);
+                          Navigator.of(context)
+                              .popUntil((route) => route.isFirst);
                         },
                         child: InkWell(
                           child: Container(

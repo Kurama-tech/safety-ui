@@ -24,7 +24,9 @@ class _ResourcesState extends State<Resources> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Resources"),
+        title: Text("Resources", style: TextStyle(color: Colors.black),),
+        foregroundColor: Colors.greenAccent,
+        backgroundColor: Colors.greenAccent,
         actions: [
           IconButton(
               icon: Icon(Icons.home),

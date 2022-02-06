@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:safety/medicine_details/medicine_details.dart';
+import 'package:my_safety/medicine_details/medicine_details.dart';
 import 'package:provider/provider.dart';
-import 'package:safety/global_bloc.dart';
-import 'package:safety/models/medicine.dart';
-import 'package:safety/new_entry/new_entry.dart';
+import 'package:my_safety/global_bloc.dart';
+import 'package:my_safety/models/medicine.dart';
+import 'package:my_safety/new_entry/new_entry.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -32,33 +32,33 @@ class _HomePageState extends State<HomePage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 10.0, bottom: 4),
-                      child: FlatButton(
-                        color: Color(0xFF3EB16F),
-                        shape: StadiumBorder(),
-                        onPressed: () {
-                          Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NewEntry(),
-                  ),
-                );
-                        },
-                        child: Center(
-                          child: Text(
-                            "Add Medicine Remainders",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
+              height: 60,
+              child: Padding(
+                padding: EdgeInsets.only(top: 10.0, bottom: 4),
+                child: FlatButton(
+                  color: Color(0xFF3EB16F),
+                  shape: StadiumBorder(),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NewEntry(),
+                      ),
+                    );
+                  },
+                  child: Center(
+                    child: Text(
+                      "Add Medicine Remainders",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
+                ),
+              ),
+            ),
           )
         ],
       ),

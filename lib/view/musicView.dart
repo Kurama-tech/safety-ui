@@ -46,7 +46,9 @@ class _MusicView extends State<MusicView> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFFF6F8FC),
       appBar: AppBar(
-        title: Text("Music"),
+        title: Text("Music", style: TextStyle(color: Colors.black),),
+        foregroundColor: Colors.greenAccent,
+        backgroundColor: Colors.greenAccent,
         actions: [
           IconButton(
               icon: Icon(Icons.home),

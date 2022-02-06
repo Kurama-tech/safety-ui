@@ -2,9 +2,9 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:safety/databaseHandler.dart';
-import 'package:safety/models/Models.dart';
-import 'package:safety/provider/Universal.dart';
+import 'package:my_safety/databaseHandler.dart';
+import 'package:my_safety/models/Models.dart';
+import 'package:my_safety/provider/Universal.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Medication extends StatefulWidget {
@@ -17,7 +17,7 @@ class Medication extends StatefulWidget {
 
 class _MedicationState extends State<Medication>
     with SingleTickerProviderStateMixin {
-      String _setTime, _setDate;
+  String _setTime, _setDate;
 
   DatabaseHandler dbhelper = DatabaseHandler();
   Database dbConnection;
@@ -84,6 +84,7 @@ class _MedicationState extends State<Medication>
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<MedicationsP>(context, listen: true);
@@ -300,4 +301,3 @@ class _MedicationState extends State<Medication>
         });
   }
 }
-

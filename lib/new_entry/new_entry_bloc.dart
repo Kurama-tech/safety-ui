@@ -1,6 +1,6 @@
 import 'package:rxdart/rxdart.dart';
-import 'package:safety/models/errors.dart';
-import 'package:safety/models/medicine_type.dart';
+import 'package:my_safety/models/errors.dart';
+import 'package:my_safety/models/medicine_type.dart';
 
 class NewEntryBloc {
   BehaviorSubject<MedicineType> _selectedMedicineType$;

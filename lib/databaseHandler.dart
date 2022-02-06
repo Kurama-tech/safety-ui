@@ -1,7 +1,7 @@
-import 'package:safety/view/Appointments.dart';
+import 'package:my_safety/view/Appointments.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:safety/models/Models.dart';
+import 'package:my_safety/models/Models.dart';
 
 class DatabaseHandler {
   String databasesPath;

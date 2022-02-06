@@ -2,17 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:safety/view/musicView.dart';
-import 'package:safety/view/remindersView.dart';
-import 'package:safety/view/resourcesView.dart';
+import 'package:my_safety/view/musicView.dart';
+import 'package:my_safety/view/remindersView.dart';
+import 'package:my_safety/view/resourcesView.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:safety/view/safetyPlanView.dart';
+import 'package:my_safety/view/safetyPlanView.dart';
 // ignore: unused_import
 import 'package:cupertino_icons/cupertino_icons.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({key}) : super(key: key);
-  static const title = "Safety";
+  static const title = "My Safety Plan";
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +38,11 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           elevation: 3.0,
-          systemOverlayStyle: SystemUiOverlayStyle(
+          foregroundColor: Colors.greenAccent,
+          backgroundColor: Colors.greenAccent,
+          /* systemOverlayStyle: SystemUiOverlayStyle(
               systemNavigationBarColor: Colors.greenAccent,
-              systemNavigationBarIconBrightness: Brightness.dark),
+              systemNavigationBarIconBrightness: Brightness.dark), */
         ),
         extendBodyBehindAppBar: false,
         floatingActionButton: buildSpeedDial(context),
@@ -134,7 +136,6 @@ class MyHomePage extends StatelessWidget {
                     builder: (context) => Resources(),
                   ),
                 );
-               
               },
             ),
             InkWell(
@@ -248,7 +249,7 @@ class MyHomePage extends StatelessWidget {
           child: Icon(Icons.call),
           backgroundColor: Colors.redAccent,
           label: 'Call 911',
-          labelStyle: TextStyle(fontSize: 18.0,color: Colors.greenAccent),
+          labelStyle: TextStyle(fontSize: 18.0, color: Colors.greenAccent),
           onTap: () => launch("tel:911"),
           onLongPress: () => print('FIRST CHILD LONG PRESS'),
         ),
@@ -259,7 +260,7 @@ class MyHomePage extends StatelessWidget {
           ),
           backgroundColor: Colors.orangeAccent,
           label: 'Call Helpline',
-          labelStyle: TextStyle(fontSize: 18.0,color: Colors.greenAccent),
+          labelStyle: TextStyle(fontSize: 18.0, color: Colors.greenAccent),
           onTap: () {
             launch("tel:18002738255");
           },

@@ -2,11 +2,11 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:safety/NotificationPlugin.dart';
-import 'package:safety/databaseHandler.dart';
-import 'package:safety/models/Models.dart';
-import 'package:safety/provider/Universal.dart';
-import 'package:safety/view/Appointments_entry.dart';
+import 'package:my_safety/NotificationPlugin.dart';
+import 'package:my_safety/databaseHandler.dart';
+import 'package:my_safety/models/Models.dart';
+import 'package:my_safety/provider/Universal.dart';
+import 'package:my_safety/view/Appointments_entry.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Appointments extends StatefulWidget {

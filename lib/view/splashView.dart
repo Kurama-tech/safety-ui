@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
               Padding(padding: EdgeInsets.all(15)),
                Hero(
                 tag: 'text',
-                child: Text("Safety",style: GoogleFonts.bioRhyme(
+                child: Text("My Safety Plan",style: GoogleFonts.bioRhyme(
                                   fontStyle: FontStyle.italic,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 50,

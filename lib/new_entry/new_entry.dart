@@ -2,14 +2,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:safety/common/convert_time.dart';
-import 'package:safety/global_bloc.dart';
-import 'package:safety/homepage/homepage.dart';
-import 'package:safety/models/errors.dart';
-import 'package:safety/models/medicine.dart';
-import 'package:safety/models/medicine_type.dart';
-import 'package:safety/new_entry/new_entry_bloc.dart';
-import 'package:safety/success_screen/success_screen.dart';
+import 'package:my_safety/common/convert_time.dart';
+import 'package:my_safety/global_bloc.dart';
+import 'package:my_safety/homepage/homepage.dart';
+import 'package:my_safety/models/errors.dart';
+import 'package:my_safety/models/medicine.dart';
+import 'package:my_safety/models/medicine_type.dart';
+import 'package:my_safety/new_entry/new_entry_bloc.dart';
+import 'package:my_safety/success_screen/success_screen.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -47,7 +47,8 @@ class _NewEntryState extends State<NewEntry> {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalBloc _globalBloc = Provider.of<GlobalBloc>(context, listen: false);
+    final GlobalBloc _globalBloc =
+        Provider.of<GlobalBloc>(context, listen: false);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -97,7 +98,8 @@ class _NewEntryState extends State<NewEntry> {
               ),
               TextFormField(
                 controller: dosageController,
-                keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
+                keyboardType: TextInputType.numberWithOptions(
+                    signed: true, decimal: true),
                 style: TextStyle(
                   fontSize: 16,
                 ),
@@ -349,7 +351,8 @@ class _NewEntryState extends State<NewEntry> {
     );
     var iOSPlatformChannelSpecifics = IOSNotificationDetails();
     var platformChannelSpecifics = NotificationDetails(
-        android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics);
 
     for (int i = 0; i < (24 / medicine.interval).floor(); i++) {
       if ((hour + (medicine.interval * i) > 23)) {
@@ -460,7 +463,8 @@ class _SelectTimeState extends State<SelectTime> {
   bool _clicked = false;
 
   Future<TimeOfDay> _selectTime(BuildContext context) async {
-    final NewEntryBloc _newEntryBloc = Provider.of<NewEntryBloc>(context, listen: false);
+    final NewEntryBloc _newEntryBloc =
+        Provider.of<NewEntryBloc>(context, listen: false);
     final TimeOfDay picked = await showTimePicker(
       context: context,
       initialTime: _time,

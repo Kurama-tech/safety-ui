@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:safety/models/Models.dart';
+import 'package:my_safety/models/Models.dart';
 
 class UniversalProvider with ChangeNotifier {
   List<UnversalModel> data;
@@ -166,7 +166,6 @@ class Environments with ChangeNotifier {
     notifyListeners();
   }
 }
-
 
 class AppointmentsP with ChangeNotifier {
   List<AppointmentsModel> data;
